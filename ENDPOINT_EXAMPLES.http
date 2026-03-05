@@ -1,0 +1,293 @@
+### Auth - Register
+POST http://localhost:5000/api/v1/auth/register
+Content-Type: application/json
+
+{
+  "username": "test user",
+  "email": "user@example.com",
+  "password": "StrongPass123!",
+  "phoneNumber": "01000000000",
+  "role": "user"
+}
+
+### Auth - Verify Email Code
+POST http://localhost:5000/api/v1/auth/verify-code
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "code": "123456"
+}
+
+### Auth - Login (by email)
+POST http://localhost:5000/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "StrongPass123!"
+}
+
+### Auth - Login (by phone)
+POST http://localhost:5000/api/v1/auth/login
+Content-Type: application/json
+
+{
+  "phoneNumber": "01000000000",
+  "password": "StrongPass123!"
+}
+
+### Auth - Forget Password
+POST http://localhost:5000/api/v1/auth/forget-password
+Content-Type: application/json
+
+{
+  "email": "user@example.com"
+}
+
+### Auth - Reset Password
+POST http://localhost:5000/api/v1/auth/reset-password
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "resetCode": "123456",
+  "newPassword": "NewStrongPass123!"
+}
+
+### Users - Get All Users (Admin only)
+GET http://localhost:5000/api/v1/users/byAdmin
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+### Users - Update User Status (Admin only)
+PATCH http://localhost:5000/api/v1/users/update-status
+Content-Type: application/json
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+{
+  "id": "{{USER_ID}}" 
+  // or
+  "email": "{{USER_EMAIL}}"
+}
+
+### Users - Get Current User Profile
+GET http://localhost:5000/api/v1/users/me
+Authorization: Bearer {{USER_TOKEN}}
+
+
+### Properties - List Properties
+GET http://localhost:5000/api/v1/properties?city=Cairo&minPrice=1000000&maxPrice=5000000&page=1&limit=10
+
+### Properties - Get Property By Id
+GET http://localhost:5000/api/v1/properties/{{PROPERTY_ID}}
+
+### Properties - Create Property
+POST http://localhost:5000/api/v1/properties
+Content-Type: application/json
+Authorization: Bearer {{USER_OR_ADMIN_TOKEN}}
+
+{
+  "name": "شقة الرحاب",
+  "description": "Very nice apartment with great view",
+  "price": 2500000,
+  "statusSaleRent": "بيع",
+  "availability": "متاح",
+  "propertyType": "شقة",
+  "area": 180,
+  "features": "3BR, 2Bath, Elevator",
+  "category": "سكني",
+  "details": {
+    "bedrooms": 3,
+    "bathrooms": 2,
+    "area": 180,
+    "furnished": true
+  },
+  "location": {
+    "country": "Egypt",
+    "city": "Cairo",
+    "address": "New Cairo, Fifth Settlement",
+    "latitude": 30.01,
+    "longitude": 31.40
+  },
+  "images": [
+    { "url": "https://example.com/image1.jpg", "isMain": true },
+    { "url": "https://example.com/image2.jpg", "isMain": false }
+  ]
+}
+
+### Properties - Update Property
+PATCH http://localhost:5000/api/v1/properties/{{PROPERTY_ID}}
+Content-Type: application/json
+Authorization: Bearer {{USER_OR_ADMIN_TOKEN}}
+
+{
+  "price": 2600000,
+  "availability": "متاح"
+}
+
+### Properties - Deactivate Property
+PATCH http://localhost:5000/api/v1/properties/{{PROPERTY_ID}}/deactivate
+Authorization: Bearer {{USER_OR_ADMIN_TOKEN}}
+
+### Appointments - Create Appointment
+POST http://localhost:5000/api/v1/appointments
+Content-Type: application/json
+Authorization: Bearer {{USER_OR_ADMIN_TOKEN}}
+
+{
+  "propertyId": "{{PROPERTY_ID}}",
+  "startTime": "2026-03-01T10:00:00.000Z",
+  "endTime": "2026-03-01T11:00:00.000Z",
+  "notes": "Please call me before arrival"
+}
+
+### Appointments - Get My Appointments
+GET http://localhost:5000/api/v1/appointments/me
+Authorization: Bearer {{USER_OR_ADMIN_TOKEN}}
+
+### Appointments - Get Appointments By Property (Admin only)
+GET http://localhost:5000/api/v1/appointments/property/{{PROPERTY_ID}}
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+### Appointments - Update Appointment Status
+PATCH http://localhost:5000/api/v1/appointments/{{APPOINTMENT_ID}}/status
+Content-Type: application/json
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+{
+  "status": "Completed"
+}
+
+### Employees - Create Employee (Admin only)
+POST http://localhost:5000/api/v1/employees
+Content-Type: application/json
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+{
+  "userId": "{{USER_ID_TO_PROMOTE}}",
+  "jobTitle": "Senior Agent",
+  "department": "Sales",
+  "salary": 8500,
+  "commissionRate": 5,
+  "employmentType": "دوام كامل",
+  "yearsOfExperience": 3
+}
+
+### Employees - List Employees (Admin only)
+GET http://localhost:5000/api/v1/employees
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+### Employees - Get Employee By Id (Admin only)
+GET http://localhost:5000/api/v1/employees/{{EMPLOYEE_ID}}
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+### Employees - Update Employee (Admin only)
+PATCH http://localhost:5000/api/v1/employees/{{EMPLOYEE_ID}}
+Content-Type: application/json
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+{
+  "salary": 9000,
+  "jobTitle": "Team Lead"
+}
+
+### Employees - Deactivate Employee (Admin only)
+PATCH http://localhost:5000/api/v1/employees/{{EMPLOYEE_ID}}/deactivate
+Authorization: Bearer {{ADMIN_TOKEN}}
+------------------  Postman ------------------
+
+### Payments - Create (Admin/Employee) (updates Transaction.paidAmount)
+POST http://localhost:5000/api/v1/payments
+Content-Type: application/json
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+{
+  "transactionId": "{{TRANSACTION_ID}}",
+  "paymentMethod": "cash",
+  "amount": 500000,
+  "status": "paid",
+  "notes": "down payment"
+}
+
+### Payments - List by transaction
+GET http://localhost:5000/api/v1/payments?transactionId={{TRANSACTION_ID}}
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+### Installments - Create (Admin/Employee)
+POST http://localhost:5000/api/v1/installments
+Content-Type: application/json
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+{
+  "transactionId": "{{TRANSACTION_ID}}",
+  "dueDate": "2026-04-01",
+  "amount": 250000,
+  "notes": "april installment"
+}
+
+### Favorites - Add (User/Owner)
+POST http://localhost:5000/api/v1/favorites
+Content-Type: application/json
+Authorization: Bearer {{USER_TOKEN}}
+
+{
+  "propertyId": "{{PROPERTY_ID}}"
+}
+
+### Favorites - List My Favorites
+GET http://localhost:5000/api/v1/favorites/me
+Authorization: Bearer {{USER_TOKEN}}
+
+### Favorites - Remove
+DELETE http://localhost:5000/api/v1/favorites/{{PROPERTY_ID}}
+Authorization: Bearer {{USER_TOKEN}}
+
+### Evaluations - Create (User/Owner/Admin)
+POST http://localhost:5000/api/v1/evaluations
+Content-Type: application/json
+Authorization: Bearer {{USER_TOKEN}}
+
+{
+  "employeeId": "{{EMPLOYEE_ID}}",
+  "appointmentId": "{{APPOINTMENT_ID}}",
+  "rating": 5,
+  "comments": "excellent experience"
+}
+
+### Evaluations - List (Admin/Employee)
+GET http://localhost:5000/api/v1/evaluations?employeeId={{EMPLOYEE_ID}}
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+### Email Logs - Create (Admin only)
+POST http://localhost:5000/api/v1/email-logs
+Content-Type: application/json
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+{
+  "userId": "{{CUSTOMER_ID}}",
+  "email": "user@example.com",
+  "subject": "Test",
+  "message": "Hello",
+  "status": "Sent"
+}
+
+### Email Logs - List (Admin only)
+GET http://localhost:5000/api/v1/email-logs?status=Sent
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+### Tasks - Create (Admin only)
+POST http://localhost:5000/api/v1/tasks
+Content-Type: application/json
+Authorization: Bearer {{ADMIN_TOKEN}}
+
+{
+  "employeeId": "{{EMPLOYEE_ID}}",
+  "title": "follow up customer",
+  "description": "call to confirm appointment",
+  "dueDate": "2026-03-10"
+}
+
+### Tasks - List (Admin/Employee)
+GET http://localhost:5000/api/v1/tasks?employeeId={{EMPLOYEE_ID}}
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+

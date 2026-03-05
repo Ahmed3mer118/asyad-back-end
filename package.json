@@ -1,0 +1,27 @@
+{
+  "name": "Real Estate services",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.0",
+    "multer": "^2.0.1",
+    "node-cache": "^5.1.2",
+    "node-cron": "^4.1.1",
+    "nodemailer": "^7.0.3",
+    "slugify": "^1.6.6",
+    "winston": "^3.17.0"
+  }
+}
