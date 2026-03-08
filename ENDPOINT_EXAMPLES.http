@@ -194,19 +194,20 @@ Authorization: Bearer {{ADMIN_TOKEN}}
 ### Employees - Deactivate Employee (Admin only)
 PATCH http://localhost:5000/api/v1/employees/{{EMPLOYEE_ID}}/deactivate
 Authorization: Bearer {{ADMIN_TOKEN}}
-------------------  Postman ------------------
 
-### Payments - Create (Admin/Employee) (updates Transaction.paidAmount)
+
+### Payments - Create (Admin/Employee) (updates Transaction.paidAmount and Installment.status)
 POST http://localhost:5000/api/v1/payments
 Content-Type: application/json
 Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
 
 {
   "transactionId": "{{TRANSACTION_ID}}",
-  "paymentMethod": "cash",
+  "installmentId": "{{INSTALLMENT_ID}}",
+  "paymentMethod": "كاش",
   "amount": 500000,
-  "status": "paid",
-  "notes": "down payment"
+  "status": "مدفوع",
+  "notes": "دفعة مقدمة"
 }
 
 ### Payments - List by transaction
@@ -220,10 +221,25 @@ Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
 
 {
   "transactionId": "{{TRANSACTION_ID}}",
-  "dueDate": "2026-04-01",
+  "installmentNo": 1,
   "amount": 250000,
-  "notes": "april installment"
+  "dueDate": "2026-04-01",
+  "notes": "قسط شهر أبريل"
 }
+
+### Installments - Generate Automatically (Admin/Employee)
+POST http://localhost:5000/api/v1/installments/generate
+Content-Type: application/json
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+{
+  "transactionId": "{{TRANSACTION_ID}}",
+  "startDate": "2026-04-01",
+  "numberOfInstallments": 5,
+  "frequency": "شهري"
+}
+
+------------------  Postman ------------------
 
 ### Favorites - Add (User/Owner)
 POST http://localhost:5000/api/v1/favorites
@@ -275,19 +291,67 @@ Authorization: Bearer {{ADMIN_TOKEN}}
 GET http://localhost:5000/api/v1/email-logs?status=Sent
 Authorization: Bearer {{ADMIN_TOKEN}}
 
-### Tasks - Create (Admin only)
-POST http://localhost:5000/api/v1/tasks
+### Tasks To Employee - Assign (Admin only)
+POST http://localhost:5000/api/v1/tasks-to-employees
 Content-Type: application/json
 Authorization: Bearer {{ADMIN_TOKEN}}
 
 {
   "employeeId": "{{EMPLOYEE_ID}}",
-  "title": "follow up customer",
-  "description": "call to confirm appointment",
-  "dueDate": "2026-03-10"
+  "propertyId": "{{PROPERTY_ID}}",
+  "title": "متابعة بيع عقار",
+  "description": "يرجى التواصل مع العميل لتحديد موعد الدفع القادم",
+  "dueDate": "2026-04-01"
 }
 
-### Tasks - List (Admin/Employee)
-GET http://localhost:5000/api/v1/tasks?employeeId={{EMPLOYEE_ID}}
+### Tasks To Employee - List (Admin/Employee)
+GET http://localhost:5000/api/v1/tasks-to-employees?employeeId={{EMPLOYEE_ID}}
 Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
 
+### Tasks By Employee - Submit (Employee/Admin)
+POST http://localhost:5000/api/v1/tasks-by-employees
+Content-Type: application/json
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+{
+  "employeeId": "{{EMPLOYEE_ID}}",
+  "taskNo": 1,
+  "data": "تم التواصل مع العميل وتم تحديد الموعد بنجاح",
+  "notes": "العميل مهتم جداً"
+}
+
+### Tasks By Employee - List (Admin/Employee)
+GET http://localhost:5000/api/v1/tasks-by-employees?employeeId={{EMPLOYEE_ID}}
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+
+### Transactions - Create Transaction (Admin/Employee)
+POST http://localhost:5000/api/v1/transactions
+Content-Type: application/json
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+{
+  "propertyId": "{{PROPERTY_ID}}",
+  "customerId": "{{CUSTOMER_ID}}",
+  "employeeId": "{{EMPLOYEE_ID}}",
+  "transactionType": "بيع",
+  "totalAmount": 2500000,
+  "paidAmount": 500000
+}
+
+### Transactions - List Transactions (Admin/Employee)
+GET http://localhost:5000/api/v1/transactions?propertyId={{PROPERTY_ID}}
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+### Transactions - Get Transaction By Id (Admin/Employee)
+GET http://localhost:5000/api/v1/transactions/{{TRANSACTION_ID}}
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+### Transactions - Update Transaction (Admin/Employee)
+PATCH http://localhost:5000/api/v1/transactions/{{TRANSACTION_ID}}
+Content-Type: application/json
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+{
+  "totalAmount": 2600000
+}

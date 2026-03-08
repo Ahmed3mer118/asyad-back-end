@@ -605,3 +605,160 @@ Timestamp: 2026/03/05 02:28:42; Level: INFO; Message: Roles ensured; Meta: {"rol
 Timestamp: 2026/03/05 02:29:34; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
 Timestamp: 2026/03/05 02:29:46; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
 Timestamp: 2026/03/05 02:30:13; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/07 23:26:48; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/07 23:56:01; Level: ERROR; Message: Failed to ensure roles; Meta: {"error":"Operation `roles.updateOne()` buffering timed out after 10000ms"}; Stack: MongooseError: Operation `roles.updateOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+Timestamp: 2026/03/08 00:54:16; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/08 01:00:07; Level: ERROR; Message: Error: POST | /api/v1/transactions | Cannot destructure property 'propertyId' of 'req.body' as it is undefined.;; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: TypeError: Cannot destructure property 'propertyId' of 'req.body' as it is undefined.
+    at H:\Graduation-project\Graduation-Project-backend\controllers\transactionControllers.js:8:11
+    at H:\Graduation-project\Graduation-Project-backend\utils\catch-async.util.js:2:5
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at H:\Graduation-project\Graduation-Project-backend\middleware\role.middleware.js:8:9
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at exports.authenticate (H:\Graduation-project\Graduation-Project-backend\middleware\auth.middleware.js:18:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 01:00:08; Level: INFO; Message: Request: POST /api/v1/transactions | Status: 500 | Duration: 183ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:03:10; Level: INFO; Message: Transaction created; Meta: {"transactionId":"69acaeaec86be53b658a4c38","propertyId":"69a8b22c7eb9415f28e8c9f4","customerId":"69a8a8dd5da62df9e2575452","employeeId":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:03:10; Level: INFO; Message: Request: POST /api/v1/transactions | Status: 201 | Duration: 575ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:04:34; Level: INFO; Message: Transaction created; Meta: {"transactionId":"69acaf02c86be53b658a4c41","propertyId":"69a8b22c7eb9415f28e8c9f4","customerId":"69a8a8dd5da62df9e2575452","employeeId":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:04:34; Level: INFO; Message: Request: POST /api/v1/transactions | Status: 201 | Duration: 318ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:07:58; Level: INFO; Message: Request: GET /api/v1/transactions?propertyId=69a8b22c7eb9415f28e8c9f4 | Status: 200 | Duration: 262ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:14:30; Level: INFO; Message: Request: GET /api/v1/transactions/69acaeaec86be53b658a4c38 | Status: 401 | Duration: 9ms; Meta: {}; Stack:  
+Timestamp: 2026/03/08 01:15:03; Level: INFO; Message: Request: GET /api/v1/transactions/69acaeaec86be53b658a4c38 | Status: 200 | Duration: 404ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:18:06; Level: ERROR; Message: Error: POST | /api/v1/payments | Cannot destructure property 'transactionId' of 'req.body' as it is undefined.;; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: TypeError: Cannot destructure property 'transactionId' of 'req.body' as it is undefined.
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:8:11
+    at H:\Graduation-project\Graduation-Project-backend\utils\catch-async.util.js:2:5
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at H:\Graduation-project\Graduation-Project-backend\middleware\role.middleware.js:8:9
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at exports.authenticate (H:\Graduation-project\Graduation-Project-backend\middleware\auth.middleware.js:18:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 01:18:06; Level: INFO; Message: Request: POST /api/v1/payments | Status: 500 | Duration: 97ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:18:54; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/08 01:19:05; Level: ERROR; Message: Error: POST | /api/v1/payments | Cannot destructure property 'transactionId' of 'req.body' as it is undefined.;; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: TypeError: Cannot destructure property 'transactionId' of 'req.body' as it is undefined.
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:8:11
+    at H:\Graduation-project\Graduation-Project-backend\utils\catch-async.util.js:2:5
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at H:\Graduation-project\Graduation-Project-backend\middleware\role.middleware.js:8:9
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at exports.authenticate (H:\Graduation-project\Graduation-Project-backend\middleware\auth.middleware.js:18:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 01:19:05; Level: INFO; Message: Request: POST /api/v1/payments | Status: 500 | Duration: 174ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:30:13; Level: INFO; Message: Payment created and transaction updated; Meta: {"paymentId":"69acb50412aed5edbe634bc7","transactionId":"69acaeaec86be53b658a4c38"}; Stack:  
+Timestamp: 2026/03/08 01:30:13; Level: INFO; Message: Request: POST /api/v1/payments | Status: 201 | Duration: 517ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:44:40; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/08 01:48:19; Level: INFO; Message: Request: GET /api/v1/payments?transactionId=69a8b22c7eb9415f28e8c9f4 | Status: 200 | Duration: 257ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:48:36; Level: INFO; Message: Request: GET /api/v1/payments?transactionId=69acaeaec86be53b658a4c38 | Status: 200 | Duration: 145ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:49:16; Level: ERROR; Message: Error: POST | /api/v1/payments | E11000 duplicate key error collection: test.payments index: paymentMethod_1 dup key: { paymentMethod: "كاش" };; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: MongoServerError: E11000 duplicate key error collection: test.payments index: paymentMethod_1 dup key: { paymentMethod: "كاش" }
+    at InsertOneOperation.execute (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:207:20)
+    at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async Collection.insertOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\collection.js:157:16)
+Timestamp: 2026/03/08 01:49:16; Level: INFO; Message: Request: POST /api/v1/payments | Status: 500 | Duration: 274ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:49:50; Level: ERROR; Message: Error: POST | /api/v1/payments | E11000 duplicate key error collection: test.payments index: paymentMethod_1 dup key: { paymentMethod: "كاش" };; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: MongoServerError: E11000 duplicate key error collection: test.payments index: paymentMethod_1 dup key: { paymentMethod: "كاش" }
+    at InsertOneOperation.execute (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:207:20)
+    at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async Collection.insertOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\collection.js:157:16)
+Timestamp: 2026/03/08 01:49:50; Level: INFO; Message: Request: POST /api/v1/payments | Status: 500 | Duration: 193ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:50:03; Level: ERROR; Message: Error: POST | /api/v1/payments | E11000 duplicate key error collection: test.payments index: paymentMethod_1 dup key: { paymentMethod: "كاش" };; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: MongoServerError: E11000 duplicate key error collection: test.payments index: paymentMethod_1 dup key: { paymentMethod: "كاش" }
+    at InsertOneOperation.execute (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:207:20)
+    at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async Collection.insertOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\collection.js:157:16)
+Timestamp: 2026/03/08 01:50:03; Level: INFO; Message: Request: POST /api/v1/payments | Status: 500 | Duration: 189ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 01:50:55; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/08 01:57:08; Level: ERROR; Message: Error: POST | /api/v1/payments | Transaction.findByIdAndUpdate is not a function;; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: TypeError: Transaction.findByIdAndUpdate is not a function
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:15:48
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 01:57:08; Level: INFO; Message: Request: POST /api/v1/payments | Status: 500 | Duration: 294ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:01:18; Level: ERROR; Message: Error: POST | /api/v1/payments | Transaction.findByIdAndUpdate is not a function;; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: TypeError: Transaction.findByIdAndUpdate is not a function
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:15:48
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:01:18; Level: INFO; Message: Request: POST /api/v1/payments | Status: 500 | Duration: 167ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:03:20; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/08 02:06:45; Level: INFO; Message: Payment created and transaction updated; Meta: {"paymentId":"69acbd95b81b411d1a074031","transactionId":"69acaeaec86be53b658a4c38"}; Stack:  
+Timestamp: 2026/03/08 02:06:45; Level: INFO; Message: Request: POST /api/v1/payments | Status: 201 | Duration: 354ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:07:15; Level: INFO; Message: Payment created and transaction updated; Meta: {"paymentId":"69acbdb3b81b411d1a074035","transactionId":"69acaeaec86be53b658a4c38"}; Stack:  
+Timestamp: 2026/03/08 02:07:15; Level: INFO; Message: Request: POST /api/v1/payments | Status: 201 | Duration: 212ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:07:32; Level: INFO; Message: Payment created and transaction updated; Meta: {"paymentId":"69acbdc4b81b411d1a074039","transactionId":"69acaeaec86be53b658a4c38"}; Stack:  
+Timestamp: 2026/03/08 02:07:32; Level: INFO; Message: Request: POST /api/v1/payments | Status: 201 | Duration: 224ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:07:50; Level: INFO; Message: Payment created and transaction updated; Meta: {"paymentId":"69acbdd6b81b411d1a07403d","transactionId":"69acaeaec86be53b658a4c38"}; Stack:  
+Timestamp: 2026/03/08 02:07:50; Level: INFO; Message: Request: POST /api/v1/payments | Status: 201 | Duration: 204ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:10:49; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/08 02:15:23; Level: INFO; Message: Request: POST /api/v1/installments | Status: 201 | Duration: 276ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:15:41; Level: ERROR; Message: Error: POST | /api/v1/installments | transactionId, installmentNo, dueDate, amount are required;; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":400}; Stack: Error: transactionId, installmentNo, dueDate, amount are required
+    at H:\Graduation-project\Graduation-Project-backend\controllers\installmentControllers.js:8:17
+    at H:\Graduation-project\Graduation-Project-backend\utils\catch-async.util.js:2:5
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at H:\Graduation-project\Graduation-Project-backend\middleware\role.middleware.js:8:9
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at exports.authenticate (H:\Graduation-project\Graduation-Project-backend\middleware\auth.middleware.js:18:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:15:41; Level: INFO; Message: Request: POST /api/v1/installments | Status: 400 | Duration: 103ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:17:00; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/08 02:17:05; Level: INFO; Message: Request: POST /api/v1/installments | Status: 201 | Duration: 244ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:17:42; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/08 02:18:38; Level: ERROR; Message: Error: POST | /api/v1/installments | E11000 duplicate key error collection: test.installments index: transactionId_1_installmentNo_1 dup key: { transactionId: ObjectId('69acaf02c86be53b658a4c41'), installmentNo: 1 };; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: MongoServerError: E11000 duplicate key error collection: test.installments index: transactionId_1_installmentNo_1 dup key: { transactionId: ObjectId('69acaf02c86be53b658a4c41'), installmentNo: 1 }
+    at InsertOneOperation.execute (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:207:20)
+    at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async Collection.insertOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\collection.js:157:16)
+Timestamp: 2026/03/08 02:18:38; Level: INFO; Message: Request: POST /api/v1/installments | Status: 500 | Duration: 376ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:19:36; Level: INFO; Message: Request: GET /api/v1/payments?transactionId=69acaeaec86be53b658a4c38 | Status: 200 | Duration: 163ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:26:14; Level: ERROR; Message: Error: POST | /api/v1/payments | هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid);; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":400}; Stack: Error: هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:21:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:26:14; Level: INFO; Message: Request: POST /api/v1/payments | Status: 400 | Duration: 156ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:26:26; Level: ERROR; Message: Error: POST | /api/v1/payments | هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid);; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":400}; Stack: Error: هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:21:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:26:26; Level: INFO; Message: Request: POST /api/v1/payments | Status: 400 | Duration: 145ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:27:47; Level: ERROR; Message: Error: POST | /api/v1/payments | هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid);; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":400}; Stack: Error: هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:21:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:27:47; Level: INFO; Message: Request: POST /api/v1/payments | Status: 400 | Duration: 135ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:28:07; Level: INFO; Message: Payment created and transaction updated; Meta: {"paymentId":"69acc29707007cce3decb8cb","transactionId":"69acaf02c86be53b658a4c41"}; Stack:  
+Timestamp: 2026/03/08 02:28:07; Level: INFO; Message: Request: POST /api/v1/payments | Status: 201 | Duration: 315ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:28:21; Level: INFO; Message: Payment created and transaction updated; Meta: {"paymentId":"69acc2a507007cce3decb8d0","transactionId":"69acaf02c86be53b658a4c41"}; Stack:  
+Timestamp: 2026/03/08 02:28:21; Level: INFO; Message: Request: POST /api/v1/payments | Status: 201 | Duration: 262ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:28:31; Level: ERROR; Message: Error: POST | /api/v1/payments | المبلغ المدفوع (300000) أكبر من المبلغ المتبقي (200000);; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":400}; Stack: Error: المبلغ المدفوع (300000) أكبر من المبلغ المتبقي (200000)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:25:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:28:31; Level: INFO; Message: Request: POST /api/v1/payments | Status: 400 | Duration: 135ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:28:44; Level: INFO; Message: Payment created and transaction updated; Meta: {"paymentId":"69acc2bc07007cce3decb8d7","transactionId":"69acaf02c86be53b658a4c41"}; Stack:  
+Timestamp: 2026/03/08 02:28:44; Level: INFO; Message: Request: POST /api/v1/payments | Status: 201 | Duration: 273ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:28:47; Level: ERROR; Message: Error: POST | /api/v1/payments | هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid);; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":400}; Stack: Error: هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:21:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:28:47; Level: INFO; Message: Request: POST /api/v1/payments | Status: 400 | Duration: 185ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:29:02; Level: INFO; Message: Request: GET /api/v1/payments?transactionId=69acaeaec86be53b658a4c38 | Status: 200 | Duration: 133ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:29:14; Level: INFO; Message: Request: GET /api/v1/payments?transactionId=69acaf02c86be53b658a4c41 | Status: 200 | Duration: 138ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:31:25; Level: ERROR; Message: Error: POST | /api/v1/installments | E11000 duplicate key error collection: test.installments index: transactionId_1_installmentNo_1 dup key: { transactionId: ObjectId('69acaf02c86be53b658a4c41'), installmentNo: 1 };; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: MongoServerError: E11000 duplicate key error collection: test.installments index: transactionId_1_installmentNo_1 dup key: { transactionId: ObjectId('69acaf02c86be53b658a4c41'), installmentNo: 1 }
+    at InsertOneOperation.execute (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:207:20)
+    at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async Collection.insertOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\collection.js:157:16)
+Timestamp: 2026/03/08 02:31:25; Level: INFO; Message: Request: POST /api/v1/installments | Status: 500 | Duration: 196ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:31:34; Level: INFO; Message: Request: POST /api/v1/installments | Status: 201 | Duration: 150ms; Meta: {"user":"699e346ff335bc4b560003ab"}; Stack:  
+Timestamp: 2026/03/08 02:37:53; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/08 02:38:12; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/08 02:38:39; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/08 02:38:55; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/08 02:54:43; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/08 03:30:42; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  

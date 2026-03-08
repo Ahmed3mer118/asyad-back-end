@@ -10,7 +10,8 @@ const installmentRoutes = require("./router/installmentRouter");
 const favoriteRoutes = require("./router/favoriteRouter");
 const evaluationRoutes = require("./router/evaluationRouter");
 const emailLogRoutes = require("./router/emailLogRouter");
-const taskRoutes = require("./router/taskRouter");
+const tasksToEmployeeRoutes = require("./router/tasksToEmployeeRouter");
+const taskByEmployeeRoutes = require("./router/taskByEmployeeRouter");
 
 const router = express.Router();
 
@@ -25,7 +26,8 @@ router.use("/installments", installmentRoutes);
 router.use("/favorites", favoriteRoutes);
 router.use("/evaluations", evaluationRoutes);
 router.use("/email-logs", emailLogRoutes);
-router.use("/tasks", taskRoutes);
+router.use("/tasks-to-employees", tasksToEmployeeRoutes);
+router.use("/tasks-by-employees", taskByEmployeeRoutes);
 
 module.exports = router;
 

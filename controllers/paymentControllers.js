@@ -5,23 +5,62 @@ const AppError = require("../utils/app-error.util");
 const logger = require("../utils/logger.util");
 
 exports.createPayment = catchAsync(async (req, res, next) => {
-  const { transactionId, paymentMethod, amount, status, notes } = req.body;
+  const { transactionId, installmentId, paymentMethod, amount, status, notes } = req.body;
   if (!transactionId || !paymentMethod || amount == null) {
     return next(new AppError("transactionId, paymentMethod, amount are required", 400));
   }
-  if (Number(amount) <= 0) return next(new AppError("amount must be > 0", 400));
+  const paymentAmount = Number(amount);
+  if (paymentAmount <= 0) return next(new AppError("amount must be > 0", 400));
 
-  const payment = await Payment.create({ transactionId, paymentMethod, amount, status, notes });
+  const transaction = await Transaction.findById(transactionId);
+  if (!transaction) return next(new AppError("Transaction not found", 404));
+
+  const remainingAmount = transaction.totalAmount - transaction.paidAmount;
+
+  if (remainingAmount <= 0) {
+    return next(new AppError("هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid)", 400));
+  }
+
+  if (paymentAmount > remainingAmount) {
+    return next(new AppError(`المبلغ المدفوع (${paymentAmount}) أكبر من المبلغ المتبقي (${remainingAmount})`, 400));
+  }
+
+  const paymentData = { transactionId, paymentMethod, amount: paymentAmount, status, notes };
+  if (installmentId) {
+    paymentData.installmentId = installmentId;
+  }
+
+  const payment = await Payment.create(paymentData);
+
   const updatedTransaction = await Transaction.findByIdAndUpdate(
     transactionId,
-    { $inc: { paidAmount: Number(amount) } },
+    { $inc: { paidAmount: paymentAmount } },
     { new: true }
   );
 
-  if (!updatedTransaction) return next(new AppError("Transaction not found", 404));
+  let updatedInstallment = null;
+  if (installmentId) {
+    const Installment = require("../models/Installment.model");
+    const installment = await Installment.findById(installmentId);
+    if (installment) {
+      const newPaidAmount = (installment.paidAmount || 0) + paymentAmount;
+      const newStatus = newPaidAmount >= installment.amount ? "مدفوع" : "جزئي";
+
+      updatedInstallment = await Installment.findByIdAndUpdate(
+        installmentId,
+        {
+          paidAmount: newPaidAmount,
+          status: newStatus,
+          paymentId: payment._id,
+          paymentDate: new Date()
+        },
+        { new: true }
+      );
+    }
+  }
 
   logger.info("Payment created and transaction updated", { paymentId: payment.id, transactionId });
-  res.status(201).json({ message: "Payment created", data: { payment, transaction: updatedTransaction } });
+  res.status(201).json({ message: "Payment created", data: { payment, transaction: updatedTransaction, installment: updatedInstallment } });
 });
 
 exports.getPayments = catchAsync(async (req, res) => {

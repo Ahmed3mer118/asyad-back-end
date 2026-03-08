@@ -80,3 +80,98 @@ Timestamp: 2026/03/05 01:40:35; Level: ERROR; Message: Error: POST | /api/v1/emp
 Timestamp: 2026/03/05 01:46:23; Level: ERROR; Message: Error: GET | /api/v1/employees/699e3536f335bc4b560003b4 | Employee not found;; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":404}; Stack: Error: Employee not found
     at H:\Graduation-project\Graduation-Project-backend\controllers\employeeControllers.js:56:30
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/07 23:56:01; Level: ERROR; Message: Failed to ensure roles; Meta: {"error":"Operation `roles.updateOne()` buffering timed out after 10000ms"}; Stack: MongooseError: Operation `roles.updateOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+Timestamp: 2026/03/08 01:00:07; Level: ERROR; Message: Error: POST | /api/v1/transactions | Cannot destructure property 'propertyId' of 'req.body' as it is undefined.;; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: TypeError: Cannot destructure property 'propertyId' of 'req.body' as it is undefined.
+    at H:\Graduation-project\Graduation-Project-backend\controllers\transactionControllers.js:8:11
+    at H:\Graduation-project\Graduation-Project-backend\utils\catch-async.util.js:2:5
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at H:\Graduation-project\Graduation-Project-backend\middleware\role.middleware.js:8:9
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at exports.authenticate (H:\Graduation-project\Graduation-Project-backend\middleware\auth.middleware.js:18:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 01:18:06; Level: ERROR; Message: Error: POST | /api/v1/payments | Cannot destructure property 'transactionId' of 'req.body' as it is undefined.;; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: TypeError: Cannot destructure property 'transactionId' of 'req.body' as it is undefined.
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:8:11
+    at H:\Graduation-project\Graduation-Project-backend\utils\catch-async.util.js:2:5
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at H:\Graduation-project\Graduation-Project-backend\middleware\role.middleware.js:8:9
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at exports.authenticate (H:\Graduation-project\Graduation-Project-backend\middleware\auth.middleware.js:18:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 01:19:05; Level: ERROR; Message: Error: POST | /api/v1/payments | Cannot destructure property 'transactionId' of 'req.body' as it is undefined.;; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: TypeError: Cannot destructure property 'transactionId' of 'req.body' as it is undefined.
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:8:11
+    at H:\Graduation-project\Graduation-Project-backend\utils\catch-async.util.js:2:5
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at H:\Graduation-project\Graduation-Project-backend\middleware\role.middleware.js:8:9
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at exports.authenticate (H:\Graduation-project\Graduation-Project-backend\middleware\auth.middleware.js:18:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 01:49:16; Level: ERROR; Message: Error: POST | /api/v1/payments | E11000 duplicate key error collection: test.payments index: paymentMethod_1 dup key: { paymentMethod: "كاش" };; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: MongoServerError: E11000 duplicate key error collection: test.payments index: paymentMethod_1 dup key: { paymentMethod: "كاش" }
+    at InsertOneOperation.execute (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:207:20)
+    at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async Collection.insertOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\collection.js:157:16)
+Timestamp: 2026/03/08 01:49:50; Level: ERROR; Message: Error: POST | /api/v1/payments | E11000 duplicate key error collection: test.payments index: paymentMethod_1 dup key: { paymentMethod: "كاش" };; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: MongoServerError: E11000 duplicate key error collection: test.payments index: paymentMethod_1 dup key: { paymentMethod: "كاش" }
+    at InsertOneOperation.execute (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:207:20)
+    at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async Collection.insertOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\collection.js:157:16)
+Timestamp: 2026/03/08 01:50:03; Level: ERROR; Message: Error: POST | /api/v1/payments | E11000 duplicate key error collection: test.payments index: paymentMethod_1 dup key: { paymentMethod: "كاش" };; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: MongoServerError: E11000 duplicate key error collection: test.payments index: paymentMethod_1 dup key: { paymentMethod: "كاش" }
+    at InsertOneOperation.execute (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:207:20)
+    at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async Collection.insertOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\collection.js:157:16)
+Timestamp: 2026/03/08 01:57:08; Level: ERROR; Message: Error: POST | /api/v1/payments | Transaction.findByIdAndUpdate is not a function;; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: TypeError: Transaction.findByIdAndUpdate is not a function
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:15:48
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:01:18; Level: ERROR; Message: Error: POST | /api/v1/payments | Transaction.findByIdAndUpdate is not a function;; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: TypeError: Transaction.findByIdAndUpdate is not a function
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:15:48
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:15:41; Level: ERROR; Message: Error: POST | /api/v1/installments | transactionId, installmentNo, dueDate, amount are required;; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":400}; Stack: Error: transactionId, installmentNo, dueDate, amount are required
+    at H:\Graduation-project\Graduation-Project-backend\controllers\installmentControllers.js:8:17
+    at H:\Graduation-project\Graduation-Project-backend\utils\catch-async.util.js:2:5
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at H:\Graduation-project\Graduation-Project-backend\middleware\role.middleware.js:8:9
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at exports.authenticate (H:\Graduation-project\Graduation-Project-backend\middleware\auth.middleware.js:18:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:18:38; Level: ERROR; Message: Error: POST | /api/v1/installments | E11000 duplicate key error collection: test.installments index: transactionId_1_installmentNo_1 dup key: { transactionId: ObjectId('69acaf02c86be53b658a4c41'), installmentNo: 1 };; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: MongoServerError: E11000 duplicate key error collection: test.installments index: transactionId_1_installmentNo_1 dup key: { transactionId: ObjectId('69acaf02c86be53b658a4c41'), installmentNo: 1 }
+    at InsertOneOperation.execute (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:207:20)
+    at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async Collection.insertOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\collection.js:157:16)
+Timestamp: 2026/03/08 02:26:14; Level: ERROR; Message: Error: POST | /api/v1/payments | هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid);; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":400}; Stack: Error: هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:21:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:26:26; Level: ERROR; Message: Error: POST | /api/v1/payments | هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid);; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":400}; Stack: Error: هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:21:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:27:47; Level: ERROR; Message: Error: POST | /api/v1/payments | هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid);; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":400}; Stack: Error: هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:21:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:28:31; Level: ERROR; Message: Error: POST | /api/v1/payments | المبلغ المدفوع (300000) أكبر من المبلغ المتبقي (200000);; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":400}; Stack: Error: المبلغ المدفوع (300000) أكبر من المبلغ المتبقي (200000)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:25:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:28:47; Level: ERROR; Message: Error: POST | /api/v1/payments | هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid);; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":400}; Stack: Error: هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:21:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/08 02:31:25; Level: ERROR; Message: Error: POST | /api/v1/installments | E11000 duplicate key error collection: test.installments index: transactionId_1_installmentNo_1 dup key: { transactionId: ObjectId('69acaf02c86be53b658a4c41'), installmentNo: 1 };; Meta: {"user":"699e346ff335bc4b560003ab","statusCode":500}; Stack: MongoServerError: E11000 duplicate key error collection: test.installments index: transactionId_1_installmentNo_1 dup key: { transactionId: ObjectId('69acaf02c86be53b658a4c41'), installmentNo: 1 }
+    at InsertOneOperation.execute (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:207:20)
+    at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async Collection.insertOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\collection.js:157:16)

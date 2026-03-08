@@ -1,4 +1,5 @@
 const Evaluation = require("../models/Evaluation.model");
+const Employee = require("../models/Employee.model");
 const catchAsync = require("../utils/catch-async.util");
 const AppError = require("../utils/app-error.util");
 
@@ -14,6 +15,24 @@ exports.createEvaluation = catchAsync(async (req, res, next) => {
     rating,
     comments
   });
+
+  // منطق بديل للـ Trigger: تحديث AverageRating في Employee
+  const stats = await Evaluation.aggregate([
+    { $match: { employeeId: evaluation.employeeId } },
+    {
+      $group: {
+        _id: "$employeeId",
+        avgRating: { $avg: "$rating" }
+      }
+    }
+  ]);
+
+  if (stats.length) {
+    await Employee.findByIdAndUpdate(evaluation.employeeId, {
+      averageRating: Number(stats[0].avgRating.toFixed(2))
+    });
+  }
+
   res.status(201).json({ message: "Evaluation created", data: evaluation });
 });
 

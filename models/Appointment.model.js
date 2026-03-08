@@ -22,6 +22,11 @@ const appointmentSchema = new mongoose.Schema(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Employee"
     },
+    // ربط اختياري بمهمة معينة (TasksToEmployee / Task)
+    taskId: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Task"
+    },
     startTime: {
       type: Date,
       required: true
@@ -35,8 +40,9 @@ const appointmentSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      enum: ["Scheduled", "Completed", "Cancelled"],
-      default: "Scheduled"
+      // مطابق للـ SQL: (مجدول، تم، ملغي)
+      enum: ["مجدول", "تم", "ملغي"],
+      default: "مجدول"
     }
   },
   {
