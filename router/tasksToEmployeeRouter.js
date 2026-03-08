@@ -5,7 +5,6 @@ const tasksToEmployeeControllers = require("../controllers/tasksToEmployeeContro
 const { authenticate } = require("../middleware/auth.middleware");
 const { authorize } = require("../middleware/role.middleware");
 
-// These tasks are generally assigned by Admins to Employees
 router.post("/", authenticate, authorize("admin"), tasksToEmployeeControllers.createTask);
 router.get("/", authenticate, authorize("admin", "employee"), tasksToEmployeeControllers.getTasks);
 router.patch("/:id", authenticate, authorize("admin", "employee"), tasksToEmployeeControllers.updateTask);
