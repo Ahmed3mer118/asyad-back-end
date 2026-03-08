@@ -50,12 +50,15 @@ npm start
 - `http://localhost:5000/api/v1`
 
 ---
+
 ### 2. اسكيما الداتابيز (للاختبار)
 
 #### 2.1 Users / Customers (`User`)
 
 - **حقول أساسية**:
   - `userName`, `email` (unique), `password` (hashed), `phone_number`, `role` (`Admin | User | Owner | Tenant | Employee`), `roleId`, `address[]`, `isVerified`, `verificationCode`, `resetCode`, `resetCodeExpires`, `isActive`, `createdAt`, `updatedAt`.
+- **استخدام في الاختبار**:
+  - أنشئ مستخدمين بأدوار مختلفة (admin / owner / user / employee) لاختبار الصلاحيات والـ flows.
 
 #### 2.2 Roles (`Role`)
 
@@ -64,9 +67,27 @@ npm start
 
 #### 2.3 Employees (`Employee`)
 
-- مطابق تقريبًا لجدول `Employees` في SQL:
+- **مطابق لاسكيما SQL**:
   - `userId` (ref User, unique) = CustomerId في SQL.
   - `jobTitle`, `department`, `salary`, `commissionRate (0–100)`, `hireDate`, `employmentType` (`دوام كامل`, `دوام جزئي`, `عقد`), `yearsOfExperience`, `averageRating`, `totalSalesAmount`, `totalDeals`, `isActive`, `createdAt`, `updatedAt`.
+- **مثال دوكيومنت للاختبار**:
+
+```json
+{
+  "userId": "64f123...",
+  "jobTitle": "سينيور وكيل عقاري",
+  "department": "المبيعات",
+  "salary": 8500,
+  "commissionRate": 5,
+  "hireDate": "2026-03-01T00:00:00.000Z",
+  "employmentType": "دوام كامل",
+  "yearsOfExperience": 3,
+  "averageRating": 4.6,
+  "totalSalesAmount": 3000000,
+  "totalDeals": 4,
+  "isActive": true
+}
+```
 
 #### 2.4 Properties (`Property`)
 
@@ -75,59 +96,43 @@ npm start
 
 #### 2.5 Appointments (`Appointment`)
 
-- يماثل `Appointments` في SQL:
+- مماثل لـ `Appointments` في SQL:
   - `propertyId` (ref Property),
   - `customerId` (ref User) + alias `userId` للـ compatibility،
   - `employeeId` (ref Employee),
-  - `taskId` (ref Task اختياري)،
-  - `startTime`, `endTime`, `notes`, `status` (`مجدول`, `تم`, `ملغي`), timestamps.
+  - `startTime`, `endTime`, `notes`, `status` (`Scheduled | Completed | Cancelled`), timestamps.
 
 #### 2.6 Transactions / Payments / Installments
 
 - `Transaction`:
   - `propertyId`, `customerId`, `employeeId`, `transactionType` (`بيع` | `إيجار`), `transactionDate`, `totalAmount`, `paidAmount` + virtual `remainingAmount`.
+- `PaymentMethod`:
+  - `name` (مثل: `نقدي`, `تحويل بنكي`, `فيزا`...).
 - `Payment`:
-  - `transactionId`, `paymentMethod` (`كاش`, `فيزا`, `تحويل بنكي`, `شيك`), `amount`, `paymentDate`, `status` (`مدفوع` | `جزئي` | `متأخر` | `ملغي`), `notes`.
-  - عند إنشاء Payment يتم زيادة `Transaction.paidAmount` (منطق بديل للتريجر في SQL).
+  - `transactionId`, `paymentMethodId`, `amount`, `paymentDate`, `status` (`مدفوع` | `جزئي` | `متأخر`), `notes`.
+  - عند إنشاء Payment يتم تحديث `Transaction.paidAmount` (منطق بديل للتريجر).
 - `Installment`:
-  - `transactionId`, `installmentNo`, `paymentId (اختياري)`, `amount`, `paidAmount`, `dueDate`, `paymentDate`, `status` (`مستحق` | `مدفوع` | `متأخر`), `notes`.
+  - `transactionId`, `dueDate`, `amount`, `paidAmount`, `paymentDate`, `status` (`مستحق` | `مدفوع` | `متأخر`), `notes`.
 
 #### 2.7 Favorites / Evaluations / EmailLogs / Tasks
 
 - `Favorite`: `customerId`, `propertyId` (index unique).
 - `Evaluation`: `employeeId`, `evaluatorId`, `appointmentId`, `transactionId`, `rating (1–5)`, `comments`, `evaluationDate`.
-- `EmailLog`: `userId`, `logNo`, `email`, `subject`, `message`, `status (Sent | Failed)`, `createdAt`.
-- `Task`: `employeeId`, `title`, `description`, `propertyId`, `appointmentId`, `status` (`معلق`, `مقبول`, `مرفوض`, `مكتمل`), `dueDate`, timestamps.
+- `EmailLog`: `userId`, `email`, `subject`, `message`, `status (Sent | Failed)`, `createdAt`.
+- `Task`: `employeeId`, `title`, `description`, `status` (`معلق`, `مقبول`, `مرفوض`, `مكتمل`), `dueDate`, timestamps.
 
 ---
 
 ### 3. توثيق عام لتدفق المشروع
 
 - **تسجيل مستخدم جديد**:
-  - `POST /auth/register` → إنشاء User + Role + إرسال كود تفعيل على الإيميل.
-  - `POST /auth/verify-code` → تفعيل الإيميل (`isVerified = true`).
 - **تسجيل الدخول**:
-  - `POST /auth/login` بإيميل أو موبايل → JWT يحتوي على `id` و `role`.
-- **إدارة المستخدمين**:
-  - الأدمن: `GET /users/byAdmin` لجلب كل المستخدمين.
-  - المستخدم: `GET /users` / `/users/me` لجلب بروفايله.
+- **إدارة المستخدمين**
 - **تحويل User إلى Employee**:
-  - الأدمن ينادي `POST /employees` مع `userId` وباقي حقول الموظف → إنشاء Employee + تحديث Role للمستخدم إلى `Employee`.
 - **إدارة العقارات**:
-  - الـ Owner/Admin ينشئ عقار بـ `POST /properties`.
-  - أي مستخدم يقرأ العقارات بـ `GET /properties` مع فلاتر.
 - **حجز مواعيد معاينة**:
-  - User يحجز موعد بـ `POST /appointments`.
-  - User يشوف مواعيده بـ `GET /appointments/me`.
-  - Admin يشوف مواعيد عقار معيّن بـ `GET /appointments/property/:id`.
 - **عمليات البيع/الإيجار والمدفوعات**:
-  - Employee/Admin ينشئ `Transaction` (بيع/إيجار).
-  - عند بيع (`transactionType = بيع`) يتم تحديث `Property.availability = 'مباع'`.
-  - عند إضافة `Payment` يتم زيادة `Transaction.paidAmount`، والـ `remainingAmount` تحسب Virtual.
-  - يمكن إنشاء خطة أقساط عبر `Installments`.
 - **المفضلة والتقييمات**:
-  - User/Owner يضيف عقار للمفضلة (`/favorites`) ويشوف مفضلته (`/favorites/me`).
-  - User/Owner يقيم موظف بعد موعد أو صفقة (`/evaluations`).
 
 ---
 
