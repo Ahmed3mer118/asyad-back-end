@@ -21,7 +21,7 @@ exports.getUsers = async (req, res) => {
 exports.getUsersById = async (req, res) => {
   try {
     const id = req.user._id;
-    const user = await Users.findById(id).select('-password -verificationCode -resetCode -resetCodeExpires');
+    const user = await Users.findById(id).select('-password -verificationCode -resetCode -resetCodeExpires').populate('roleId', 'name');
 
     if (!user) {
       logger.warn("User not found when fetching by id", { requestedUserId: id });
@@ -29,7 +29,7 @@ exports.getUsersById = async (req, res) => {
     }
 
     logger.info("User fetched own profile", { userId: user.id });
-
+    conosle.log(user)
     return res.status(200).json({
       message: "User retrieved successfully.",
       data: user

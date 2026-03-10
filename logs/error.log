@@ -339,3 +339,203 @@ Timestamp: 2026/03/10 02:00:17; Level: ERROR; Message: Error: POST | /api/v1/tra
     at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3113:17
     at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1407:9
     at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+Timestamp: 2026/03/10 15:10:50; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 15:10:59; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 15:11:40; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 15:14:34; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 15:14:36; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 15:33:15; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 15:33:15; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 15:33:20; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 15:33:20; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 16:19:09; Level: ERROR; Message: Error: POST | /api/v1/tasks-to-employees | Employee already has a task at this date/time (عنده نفس المعاد فيه تاسك);; Meta: {"user":"69aeba814f93e2a8aaa58faa","statusCode":409}; Stack: Error: Employee already has a task at this date/time (عنده نفس المعاد فيه تاسك)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\tasksToEmployeeControllers.js:20:25
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 16:23:43; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 16:23:43; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 16:23:55; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 16:23:55; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 16:24:02; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 16:24:02; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 16:35:35; Level: ERROR; Message: Error: POST | /api/v1/tasks-to-employees | Employee already has a task at this date/time (عنده نفس المعاد فيه تاسك);; Meta: {"user":"69aeba814f93e2a8aaa58faa","statusCode":409}; Stack: Error: Employee already has a task at this date/time (عنده نفس المعاد فيه تاسك)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\tasksToEmployeeControllers.js:20:25
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 16:35:42; Level: ERROR; Message: Error: POST | /api/v1/tasks-to-employees | Employee already has a task at this date/time (عنده نفس المعاد فيه تاسك);; Meta: {"user":"69aeba814f93e2a8aaa58faa","statusCode":409}; Stack: Error: Employee already has a task at this date/time (عنده نفس المعاد فيه تاسك)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\tasksToEmployeeControllers.js:20:25
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 16:50:27; Level: ERROR; Message: Error: POST | /api/v1/payments | Payment validation failed: paymentMethod: `cheque` is not a valid enum value for path `paymentMethod`.;; Meta: {"user":"69a8a8dd5da62df9e2575452","statusCode":500}; Stack: ValidationError: Payment validation failed: paymentMethod: `cheque` is not a valid enum value for path `paymentMethod`.
+    at Document.invalidate (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3352:32)
+    at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3113:17
+    at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+Timestamp: 2026/03/10 17:36:58; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 17:36:58; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 17:41:25; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 17:41:25; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 17:48:22; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 17:48:22; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 17:50:34; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 17:50:34; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 17:54:17; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 17:54:17; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 17:54:20; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 17:54:20; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 17:54:32; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 17:54:32; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:13:54; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:13:54; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:45:10; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:45:10; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:45:21; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:45:21; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:45:25; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:45:25; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:45:28; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:45:28; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:45:32; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:45:32; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:59:09; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:59:09; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:59:23; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 20:59:23; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 21:08:23; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 21:14:02; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 21:14:02; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 21:15:32; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 21:15:33; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 21:25:59; Level: ERROR; Message: Error: POST | /api/v1/payments | Payment amount (208333.3700000001) exceeds remaining amount (208333.36999999965);; Meta: {"user":"69a8a8dd5da62df9e2575452","statusCode":400}; Stack: Error: Payment amount (208333.3700000001) exceeds remaining amount (208333.36999999965)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:30:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 21:26:10; Level: ERROR; Message: Error: POST | /api/v1/payments | Payment amount (208333.3700000001) exceeds remaining amount (208333.36999999965);; Meta: {"user":"69a8a8dd5da62df9e2575452","statusCode":400}; Stack: Error: Payment amount (208333.3700000001) exceeds remaining amount (208333.36999999965)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:30:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 21:27:24; Level: ERROR; Message: Error: POST | /api/v1/payments | Payment amount (208333.3700000001) exceeds remaining amount (208333.36999999965);; Meta: {"user":"69a8a8dd5da62df9e2575452","statusCode":400}; Stack: Error: Payment amount (208333.3700000001) exceeds remaining amount (208333.36999999965)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:30:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 21:31:08; Level: ERROR; Message: Error: POST | /api/v1/payments | Payment amount (208333.37) exceeds remaining amount (208333.36999999965);; Meta: {"user":"69a8a8dd5da62df9e2575452","statusCode":400}; Stack: Error: Payment amount (208333.37) exceeds remaining amount (208333.36999999965)
+    at H:\Graduation-project\Graduation-Project-backend\controllers\paymentControllers.js:30:17
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 22:13:34; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 22:13:34; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 22:14:01; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 22:14:01; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 22:49:31; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 22:49:31; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 22:50:07; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 22:50:07; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
