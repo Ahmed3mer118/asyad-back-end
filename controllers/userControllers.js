@@ -1,4 +1,5 @@
 const Users = require("../models/userModel");
+const Role = require("../models/Role.model");
 const logger = require("../utils/logger.util");
 
 exports.getUsers = async (req, res) => {
@@ -116,5 +117,50 @@ exports.adminUpdateUserStatus = async (req, res) => {
     return res.status(500).json({
       error: "Server error while updating user status."
     });
+  }
+};
+
+exports.updateUserRole = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { role } = req.body;
+
+    const allowedRoles = ["Admin", "User", "Owner", "Tenant", "Employee"];
+    if (!role || !allowedRoles.includes(role)) {
+      return res.status(400).json({
+        error: "Invalid role. Allowed: " + allowedRoles.join(", ")
+      });
+    }
+
+    const user = await Users.findById(id);
+    if (!user) {
+      logger.warn("User not found when updating role", { requestedUserId: id });
+      return res.status(404).json({ error: "User not found." });
+    }
+
+    const roleDoc = await Role.findOne({ name: role });
+    if (!roleDoc) {
+      return res.status(400).json({ error: "Role not found in database." });
+    }
+
+    user.role = role;
+    user.roleId = roleDoc._id;
+    await user.save();
+
+    const updatedUser = await Users.findById(id).select("-password -verificationCode -resetCode -resetCodeExpires");
+
+    logger.info("Admin updated user role", {
+      adminId: req.user?._id,
+      targetUserId: updatedUser.id,
+      newRole: role
+    });
+
+    return res.status(200).json({
+      message: "User role updated successfully.",
+      data: updatedUser
+    });
+  } catch (error) {
+    logger.error("Error while updating user role", { error: error.message, stack: error.stack });
+    return res.status(500).json({ error: "Server error while updating user role." });
   }
 };

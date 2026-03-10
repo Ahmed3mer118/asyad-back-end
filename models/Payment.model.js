@@ -7,16 +7,15 @@ const paymentSchema = new mongoose.Schema(
     paymentMethod: {
       type: String,
       required: true,
-      enum: ["كاش", "فيزا", "تحويل بنكي", "شيك"],
-      default: "كاش"
+      enum: ["cash", "visa", "bank_transfer", "check"],
+      default: "cash"
     },
     amount: { type: Number, required: true, min: 0.01 },
     paymentDate: { type: Date, default: Date.now },
-    // مطابق للـ SQL: Status ('مدفوع', 'جزئي', 'متأخر', 'ملغي')
     status: {
       type: String,
-      enum: ["مدفوع", "جزئي", "متأخر", "ملغي"],
-      default: "مدفوع"
+      enum: ["paid", "partial", "late", "cancelled"],
+      default: "paid"
     },
     notes: { type: String }
   },

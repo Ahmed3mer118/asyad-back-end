@@ -175,3 +175,167 @@ Timestamp: 2026/03/08 02:31:25; Level: ERROR; Message: Error: POST | /api/v1/ins
     at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:207:20)
     at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
     at async Collection.insertOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\collection.js:157:16)
+Timestamp: 2026/03/09 13:48:30; Level: ERROR; Message: Failed to ensure roles; Meta: {"error":"Operation `roles.updateOne()` buffering timed out after 10000ms"}; Stack: MongooseError: Operation `roles.updateOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+Timestamp: 2026/03/09 20:50:30; Level: ERROR; Message: Error creating property; Meta: {"error":"Property validation failed: name: Path `name` is required., statusSaleRent: Path `statusSaleRent` is required."}; Stack: ValidationError: Property validation failed: name: Path `name` is required., statusSaleRent: Path `statusSaleRent` is required.
+    at Document.invalidate (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3352:32)
+    at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3113:17
+    at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+Timestamp: 2026/03/09 23:30:47; Level: ERROR; Message: Error fetching property by id; Meta: {"error":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"Property\""}; Stack: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "Property"
+    at SchemaObjectId.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1255:12)
+    at SchemaType.castForQuery (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1673:17)
+    at cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getPropertyById (H:\Graduation-project\Graduation-Project-backend\controllers\propertyControllers.js:113:22)
+Timestamp: 2026/03/09 23:30:57; Level: ERROR; Message: Error fetching property by id; Meta: {"error":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"Property\""}; Stack: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "Property"
+    at SchemaObjectId.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1255:12)
+    at SchemaType.castForQuery (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1673:17)
+    at cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getPropertyById (H:\Graduation-project\Graduation-Project-backend\controllers\propertyControllers.js:113:22)
+Timestamp: 2026/03/09 23:32:00; Level: ERROR; Message: Error fetching property by id; Meta: {"error":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"Property\""}; Stack: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "Property"
+    at SchemaObjectId.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1255:12)
+    at SchemaType.castForQuery (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1673:17)
+    at cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getPropertyById (H:\Graduation-project\Graduation-Project-backend\controllers\propertyControllers.js:113:22)
+Timestamp: 2026/03/09 23:32:39; Level: ERROR; Message: Error fetching property by id; Meta: {"error":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"Property\""}; Stack: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "Property"
+    at SchemaObjectId.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1255:12)
+    at SchemaType.castForQuery (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1673:17)
+    at cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getPropertyById (H:\Graduation-project\Graduation-Project-backend\controllers\propertyControllers.js:113:22)
+Timestamp: 2026/03/09 23:33:31; Level: ERROR; Message: Error fetching property by id; Meta: {"error":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"Property\""}; Stack: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "Property"
+    at SchemaObjectId.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1255:12)
+    at SchemaType.castForQuery (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1673:17)
+    at cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getPropertyById (H:\Graduation-project\Graduation-Project-backend\controllers\propertyControllers.js:113:22)
+Timestamp: 2026/03/09 23:33:45; Level: ERROR; Message: Error fetching property by id; Meta: {"error":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"Property\""}; Stack: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "Property"
+    at SchemaObjectId.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1255:12)
+    at SchemaType.castForQuery (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1673:17)
+    at cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getPropertyById (H:\Graduation-project\Graduation-Project-backend\controllers\propertyControllers.js:113:22)
+Timestamp: 2026/03/09 23:33:45; Level: ERROR; Message: Error fetching property by id; Meta: {"error":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"Property\""}; Stack: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "Property"
+    at SchemaObjectId.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1255:12)
+    at SchemaType.castForQuery (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1673:17)
+    at cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getPropertyById (H:\Graduation-project\Graduation-Project-backend\controllers\propertyControllers.js:113:22)
+Timestamp: 2026/03/09 23:33:49; Level: ERROR; Message: Error fetching property by id; Meta: {"error":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"Property\""}; Stack: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "Property"
+    at SchemaObjectId.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1255:12)
+    at SchemaType.castForQuery (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1673:17)
+    at cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getPropertyById (H:\Graduation-project\Graduation-Project-backend\controllers\propertyControllers.js:113:22)
+Timestamp: 2026/03/09 23:34:10; Level: ERROR; Message: Error fetching property by id; Meta: {"error":"Cast to ObjectId failed for value \"[object Object]\" (type string) at path \"_id\" for model \"Property\""}; Stack: CastError: Cast to ObjectId failed for value "[object Object]" (type string) at path "_id" for model "Property"
+    at SchemaObjectId.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schema\objectId.js:251:11)
+    at SchemaType.applySetters (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1255:12)
+    at SchemaType.castForQuery (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1673:17)
+    at cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\cast.js:390:32)
+    at Query.cast (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:5055:12)
+    at Query._castConditions (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2351:10)
+    at model.Query._findOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:2674:8)
+    at model.Query.exec (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\query.js:4604:80)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async exports.getPropertyById (H:\Graduation-project\Graduation-Project-backend\controllers\propertyControllers.js:113:22)
+Timestamp: 2026/03/09 23:36:03; Level: ERROR; Message: Error: POST | /api/v1/favorites | E11000 duplicate key error collection: test.favorites index: customerId_1_propertyId_1 dup key: { customerId: ObjectId('69af2de096c0d107c1b277c2'), propertyId: ObjectId('6994378679f7f391ad757ae8') };; Meta: {"user":"69af2de096c0d107c1b277c2","statusCode":500}; Stack: MongoServerError: E11000 duplicate key error collection: test.favorites index: customerId_1_propertyId_1 dup key: { customerId: ObjectId('69af2de096c0d107c1b277c2'), propertyId: ObjectId('6994378679f7f391ad757ae8') }
+    at InsertOneOperation.execute (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:207:20)
+    at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async Collection.insertOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\collection.js:157:16)
+Timestamp: 2026/03/09 23:36:05; Level: ERROR; Message: Error: POST | /api/v1/favorites | E11000 duplicate key error collection: test.favorites index: customerId_1_propertyId_1 dup key: { customerId: ObjectId('69af2de096c0d107c1b277c2'), propertyId: ObjectId('6994378679f7f391ad757ae8') };; Meta: {"user":"69af2de096c0d107c1b277c2","statusCode":500}; Stack: MongoServerError: E11000 duplicate key error collection: test.favorites index: customerId_1_propertyId_1 dup key: { customerId: ObjectId('69af2de096c0d107c1b277c2'), propertyId: ObjectId('6994378679f7f391ad757ae8') }
+    at InsertOneOperation.execute (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:207:20)
+    at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async Collection.insertOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\collection.js:157:16)
+Timestamp: 2026/03/09 23:36:35; Level: ERROR; Message: Error: POST | /api/v1/favorites | E11000 duplicate key error collection: test.favorites index: customerId_1_propertyId_1 dup key: { customerId: ObjectId('69af2de096c0d107c1b277c2'), propertyId: ObjectId('6994378679f7f391ad757ae8') };; Meta: {"user":"69af2de096c0d107c1b277c2","statusCode":500}; Stack: MongoServerError: E11000 duplicate key error collection: test.favorites index: customerId_1_propertyId_1 dup key: { customerId: ObjectId('69af2de096c0d107c1b277c2'), propertyId: ObjectId('6994378679f7f391ad757ae8') }
+    at InsertOneOperation.execute (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\insert.js:51:19)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:207:20)
+    at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async Collection.insertOne (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\collection.js:157:16)
+Timestamp: 2026/03/09 23:53:38; Level: ERROR; Message: Error: POST | /api/v1/employees | userId is required;; Meta: {"user":"69aeba814f93e2a8aaa58faa","statusCode":400}; Stack: Error: userId is required
+    at H:\Graduation-project\Graduation-Project-backend\controllers\employeeControllers.js:19:28
+    at H:\Graduation-project\Graduation-Project-backend\utils\catch-async.util.js:2:5
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at H:\Graduation-project\Graduation-Project-backend\middleware\role.middleware.js:8:9
+    at Layer.handleRequest (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\layer.js:152:17)
+    at next (H:\Graduation-project\Graduation-Project-backend\node_modules\router\lib\route.js:157:13)
+    at exports.authenticate (H:\Graduation-project\Graduation-Project-backend\middleware\auth.middleware.js:18:9)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 01:34:31; Level: ERROR; Message: Error: GET | /api/v1/transactions/69acaf02c86be53b658a4c41 | Transaction not found;; Meta: {"user":"69aeba814f93e2a8aaa58faa","statusCode":404}; Stack: Error: Transaction not found
+    at H:\Graduation-project\Graduation-Project-backend\controllers\transactionControllers.js:55:33
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/10 01:58:54; Level: ERROR; Message: Error: POST | /api/v1/transactions | Transaction validation failed: transactionType: `بيع` is not a valid enum value for path `transactionType`.;; Meta: {"user":"69aeba814f93e2a8aaa58faa","statusCode":500}; Stack: ValidationError: Transaction validation failed: transactionType: `بيع` is not a valid enum value for path `transactionType`.
+    at Document.invalidate (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3352:32)
+    at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3113:17
+    at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+Timestamp: 2026/03/10 01:59:29; Level: ERROR; Message: Error: POST | /api/v1/transactions | Transaction validation failed: transactionType: `بيع` is not a valid enum value for path `transactionType`.;; Meta: {"user":"69aeba814f93e2a8aaa58faa","statusCode":500}; Stack: ValidationError: Transaction validation failed: transactionType: `بيع` is not a valid enum value for path `transactionType`.
+    at Document.invalidate (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3352:32)
+    at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3113:17
+    at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+Timestamp: 2026/03/10 01:59:36; Level: ERROR; Message: Error: POST | /api/v1/transactions | Transaction validation failed: transactionType: `بيع` is not a valid enum value for path `transactionType`.;; Meta: {"user":"69aeba814f93e2a8aaa58faa","statusCode":500}; Stack: ValidationError: Transaction validation failed: transactionType: `بيع` is not a valid enum value for path `transactionType`.
+    at Document.invalidate (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3352:32)
+    at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3113:17
+    at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+Timestamp: 2026/03/10 01:59:58; Level: ERROR; Message: Error: POST | /api/v1/transactions | Transaction validation failed: transactionType: `بيع` is not a valid enum value for path `transactionType`.;; Meta: {"user":"69aeba814f93e2a8aaa58faa","statusCode":500}; Stack: ValidationError: Transaction validation failed: transactionType: `بيع` is not a valid enum value for path `transactionType`.
+    at Document.invalidate (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3352:32)
+    at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3113:17
+    at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)
+Timestamp: 2026/03/10 02:00:17; Level: ERROR; Message: Error: POST | /api/v1/transactions | Transaction validation failed: transactionType: `إيجار` is not a valid enum value for path `transactionType`.;; Meta: {"user":"69aeba814f93e2a8aaa58faa","statusCode":500}; Stack: ValidationError: Transaction validation failed: transactionType: `إيجار` is not a valid enum value for path `transactionType`.
+    at Document.invalidate (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3352:32)
+    at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\document.js:3113:17
+    at H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\schemaType.js:1407:9
+    at process.processTicksAndRejections (node:internal/process/task_queues:85:11)

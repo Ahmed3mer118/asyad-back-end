@@ -5,7 +5,7 @@ const transactionSchema = new mongoose.Schema(
         propertyId: { type: mongoose.Schema.Types.ObjectId, ref: "Property", required: true },
         customerId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
         employeeId: { type: mongoose.Schema.Types.ObjectId, ref: "Employee", required: true },
-        transactionType: { type: String, enum: ["بيع", "إيجار"], required: true },
+        transactionType: { type: String, enum: ["sale", "rent"], required: true },
         transactionDate: { type: Date, default: Date.now },
         totalAmount: { type: Number, required: true },
         paidAmount: { type: Number, default: 0 }

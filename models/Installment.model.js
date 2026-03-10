@@ -11,8 +11,8 @@ const installmentSchema = new mongoose.Schema(
     paymentDate: { type: Date },
     status: {
       type: String,
-      enum: ["مستحق", "مدفوع", "متأخر"],
-      default: "مستحق"
+      enum: ["due", "paid", "late"],
+      default: "due"
     },
     notes: { type: String }
   },

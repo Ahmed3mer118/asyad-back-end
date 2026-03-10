@@ -9,8 +9,8 @@ const tasksToEmployeeSchema = new mongoose.Schema(
         description: { type: String },
         status: {
             type: String,
-            enum: ["معلق", "مقبول", "مرفوض", "مكتمل"],
-            default: "معلق"
+            enum: ["pending", "accepted", "rejected", "completed"],
+            default: "pending"
         },
         dueDate: { type: Date }
     },

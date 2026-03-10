@@ -40,9 +40,8 @@ const appointmentSchema = new mongoose.Schema(
     },
     status: {
       type: String,
-      // مطابق للـ SQL: (مجدول، تم، ملغي)
-      enum: ["مجدول", "تم", "ملغي"],
-      default: "مجدول"
+      enum: ["scheduled", "completed", "cancelled"],
+      default: "scheduled"
     }
   },
   {

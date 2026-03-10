@@ -87,15 +87,15 @@ Content-Type: application/json
 Authorization: Bearer {{USER_OR_ADMIN_TOKEN}}
 
 {
-  "name": "شقة الرحاب",
+  "name": "Garden City Apartment",
   "description": "Very nice apartment with great view",
   "price": 2500000,
-  "statusSaleRent": "بيع",
-  "availability": "متاح",
-  "propertyType": "شقة",
+  "statusSaleRent": "sale",
+  "availability": "available",
+  "propertyType": "apartment",
   "area": 180,
   "features": "3BR, 2Bath, Elevator",
-  "category": "سكني",
+  "category": "residential",
   "details": {
     "bedrooms": 3,
     "bathrooms": 2,
@@ -122,7 +122,7 @@ Authorization: Bearer {{USER_OR_ADMIN_TOKEN}}
 
 {
   "price": 2600000,
-  "availability": "متاح"
+  "availability": "available"
 }
 
 ### Properties - Deactivate Property
@@ -155,7 +155,7 @@ Content-Type: application/json
 Authorization: Bearer {{ADMIN_TOKEN}}
 
 {
-  "status": "Completed"
+  "status": "completed"
 }
 
 ### Employees - Create Employee (Admin only)
@@ -169,7 +169,7 @@ Authorization: Bearer {{ADMIN_TOKEN}}
   "department": "Sales",
   "salary": 8500,
   "commissionRate": 5,
-  "employmentType": "دوام كامل",
+  "employmentType": "full-time",
   "yearsOfExperience": 3
 }
 
@@ -195,24 +195,95 @@ Authorization: Bearer {{ADMIN_TOKEN}}
 PATCH http://localhost:5000/api/v1/employees/{{EMPLOYEE_ID}}/deactivate
 Authorization: Bearer {{ADMIN_TOKEN}}
 
+# ========== Transactions (مطابق لجدول Transactions في Final.sql: PropertyId, CustomerId, EmployeeId, TransactionType, TotalAmount, PaidAmount | RemainingAmount محسوب) ==========
 
-### Payments - Create (Admin/Employee) (updates Transaction.paidAmount and Installment.status)
-POST http://localhost:5000/api/v1/payments
+### Transactions - Create (Admin/Employee)
+POST http://localhost:5000/api/v1/transactions
 Content-Type: application/json
 Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
 
 {
-  "transactionId": "{{TRANSACTION_ID}}",
-  "installmentId": "{{INSTALLMENT_ID}}",
-  "paymentMethod": "كاش",
-  "amount": 500000,
-  "status": "مدفوع",
-  "notes": "دفعة مقدمة"
+  "propertyId": "{{PROPERTY_ID}}",
+  "customerId": "{{CUSTOMER_ID}}",
+  "employeeId": "{{EMPLOYEE_ID}}",
+  "transactionType": "sale",
+  "totalAmount": 2500000,
+  "paidAmount": 500000
 }
 
-### Payments - List by transaction
-GET http://localhost:5000/api/v1/payments?transactionId={{TRANSACTION_ID}}
+### Transactions - Create (إيجار)
+POST http://localhost:5000/api/v1/transactions
+Content-Type: application/json
 Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+{
+  "propertyId": "{{PROPERTY_ID}}",
+  "customerId": "{{CUSTOMER_ID}}",
+  "employeeId": "{{EMPLOYEE_ID}}",
+  "transactionType": "rent",
+  "totalAmount": 120000,
+  "paidAmount": 0
+}
+
+### Transactions - My transactions (current user as customer) — للفرونت صفحة المدفوعات
+GET http://localhost:5000/api/v1/transactions/me?page=1&limit=20
+Authorization: Bearer {{USER_TOKEN}}
+
+### Transactions - List (optional filters: propertyId, customerId, employeeId; user can only use own customerId)
+GET http://localhost:5000/api/v1/transactions
+Authorization: Bearer {{USER_TOKEN}}
+
+### Transactions - List by Property
+GET http://localhost:5000/api/v1/transactions?propertyId={{PROPERTY_ID}}
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+### Transactions - List by Customer
+GET http://localhost:5000/api/v1/transactions?customerId={{CUSTOMER_ID}}
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+### Transactions - Get By Id (returns transaction with computed remainingAmount)
+GET http://localhost:5000/api/v1/transactions/{{TRANSACTION_ID}}
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+### Transactions - Update
+PATCH http://localhost:5000/api/v1/transactions/{{TRANSACTION_ID}}
+Content-Type: application/json
+Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
+
+{
+  "totalAmount": 2600000,
+  "paidAmount": 600000
+}
+
+### Payments - My payments (current user's payments) — للفرونت صفحة المدفوعات
+GET http://localhost:5000/api/v1/payments/me
+Authorization: Bearer {{USER_TOKEN}}
+
+### Payments - Create (User: own transaction only | Admin/Employee: any) — تسجيل دفعة
+POST http://localhost:5000/api/v1/payments
+Content-Type: application/json
+Authorization: Bearer {{USER_TOKEN}}
+
+{
+  "transactionId": "{{TRANSACTION_ID}}",
+  "installmentId": "{{INSTALLMENT_ID}}",
+  "paymentMethod": "cash",
+  "amount": 500000,
+  "status": "paid",
+  "notes": "down payment"
+}
+
+### Payments - List by transaction (user: only if transaction is theirs)
+GET http://localhost:5000/api/v1/payments?transactionId={{TRANSACTION_ID}}
+Authorization: Bearer {{USER_TOKEN}}
+
+### Installments - My installments (current user's installments) — للفرونت صفحة الأقساط
+GET http://localhost:5000/api/v1/installments/me?page=1&limit=20
+Authorization: Bearer {{USER_TOKEN}}
+
+### Installments - List by transaction (user: only if transaction is theirs)
+GET http://localhost:5000/api/v1/installments?transactionId={{TRANSACTION_ID}}
+Authorization: Bearer {{USER_TOKEN}}
 
 ### Installments - Create (Admin/Employee)
 POST http://localhost:5000/api/v1/installments
@@ -224,7 +295,7 @@ Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
   "installmentNo": 1,
   "amount": 250000,
   "dueDate": "2026-04-01",
-  "notes": "قسط شهر أبريل"
+  "notes": "April installment"
 }
 
 ### Installments - Generate Automatically (Admin/Employee)
@@ -236,7 +307,7 @@ Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
   "transactionId": "{{TRANSACTION_ID}}",
   "startDate": "2026-04-01",
   "numberOfInstallments": 5,
-  "frequency": "شهري"
+  "frequency": "monthly"
 }
 
 ------------------  Postman ------------------
@@ -299,8 +370,8 @@ Authorization: Bearer {{ADMIN_TOKEN}}
 {
   "employeeId": "{{EMPLOYEE_ID}}",
   "propertyId": "{{PROPERTY_ID}}",
-  "title": "متابعة بيع عقار",
-  "description": "يرجى التواصل مع العميل لتحديد موعد الدفع القادم",
+  "title": "Follow up property sale",
+  "description": "Contact customer to schedule next payment",
   "dueDate": "2026-04-01"
 }
 
@@ -316,42 +387,10 @@ Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
 {
   "employeeId": "{{EMPLOYEE_ID}}",
   "taskNo": 1,
-  "data": "تم التواصل مع العميل وتم تحديد الموعد بنجاح",
-  "notes": "العميل مهتم جداً"
+  "data": "Contacted customer and scheduled appointment successfully",
+  "notes": "Customer very interested"
 }
 
 ### Tasks By Employee - List (Admin/Employee)
 GET http://localhost:5000/api/v1/tasks-by-employees?employeeId={{EMPLOYEE_ID}}
 Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
-
-
-### Transactions - Create Transaction (Admin/Employee)
-POST http://localhost:5000/api/v1/transactions
-Content-Type: application/json
-Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
-
-{
-  "propertyId": "{{PROPERTY_ID}}",
-  "customerId": "{{CUSTOMER_ID}}",
-  "employeeId": "{{EMPLOYEE_ID}}",
-  "transactionType": "بيع",
-  "totalAmount": 2500000,
-  "paidAmount": 500000
-}
-
-### Transactions - List Transactions (Admin/Employee)
-GET http://localhost:5000/api/v1/transactions?propertyId={{PROPERTY_ID}}
-Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
-
-### Transactions - Get Transaction By Id (Admin/Employee)
-GET http://localhost:5000/api/v1/transactions/{{TRANSACTION_ID}}
-Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
-
-### Transactions - Update Transaction (Admin/Employee)
-PATCH http://localhost:5000/api/v1/transactions/{{TRANSACTION_ID}}
-Content-Type: application/json
-Authorization: Bearer {{EMPLOYEE_OR_ADMIN_TOKEN}}
-
-{
-  "totalAmount": 2600000
-}

@@ -1,4 +1,5 @@
 const Installment = require("../models/Installment.model");
+const Transaction = require("../models/Transaction.model");
 const catchAsync = require("../utils/catch-async.util");
 const AppError = require("../utils/app-error.util");
 
@@ -18,12 +19,46 @@ exports.createInstallment = catchAsync(async (req, res, next) => {
   res.status(201).json({ message: "Installment created", data: installment });
 });
 
-exports.getInstallments = catchAsync(async (req, res) => {
-  const { transactionId } = req.query;
+exports.getInstallments = catchAsync(async (req, res, next) => {
+  const { transactionId, page = 1, limit = 50 } = req.query;
+  const isAdminOrEmployee = ["admin", "employee"].includes(String(req.user?.role || "").toLowerCase());
   const q = {};
-  if (transactionId) q.transactionId = transactionId;
-  const installments = await Installment.find(q).sort({ dueDate: 1 });
-  res.status(200).json({ message: "Installments fetched", data: installments });
+
+  if (transactionId) {
+    const transaction = await Transaction.findById(transactionId);
+    if (!transaction) return next(new AppError("Transaction not found", 404));
+    if (!isAdminOrEmployee && transaction.customerId.toString() !== req.user._id.toString()) {
+      return next(new AppError("You can only view installments for your own transactions", 403));
+    }
+    q.transactionId = transactionId;
+  }
+
+  const skip = (Math.max(1, parseInt(page, 10)) - 1) * Math.max(1, parseInt(limit, 10));
+  const limitNum = Math.min(100, Math.max(1, parseInt(limit, 10)));
+
+  const [installments, total] = await Promise.all([
+    Installment.find(q).sort({ dueDate: 1 }).skip(skip).limit(limitNum).lean(),
+    Installment.countDocuments(q)
+  ]);
+
+  res.status(200).json({ data: installments, total });
+});
+
+exports.getMyInstallments = catchAsync(async (req, res) => {
+  const { page = 1, limit = 50 } = req.query;
+  const userId = req.user._id;
+  const myTransactionIds = (await Transaction.find({ customerId: userId }).select("_id").lean()).map((t) => t._id);
+  const q = { transactionId: { $in: myTransactionIds } };
+
+  const skip = (Math.max(1, parseInt(page, 10)) - 1) * Math.max(1, parseInt(limit, 10));
+  const limitNum = Math.min(100, Math.max(1, parseInt(limit, 10)));
+
+  const [installments, total] = await Promise.all([
+    Installment.find(q).sort({ dueDate: 1 }).skip(skip).limit(limitNum).lean(),
+    Installment.countDocuments(q)
+  ]);
+
+  res.status(200).json({ data: installments, total });
 });
 
 exports.updateInstallment = catchAsync(async (req, res, next) => {
@@ -38,13 +73,12 @@ exports.generateInstallments = catchAsync(async (req, res, next) => {
     return next(new AppError("transactionId, startDate, numberOfInstallments, frequency are required", 400));
   }
 
-  const Transaction = require("../models/Transaction.model");
   const transaction = await Transaction.findById(transactionId);
   if (!transaction) return next(new AppError("Transaction not found", 404));
 
   const remainingAmount = Math.max(0, transaction.totalAmount - (transaction.paidAmount || 0));
   if (remainingAmount <= 0) {
-    return next(new AppError("هذه المعاملة مدفوعة بالكامل بالفعل (This transaction is already fully paid)", 400));
+    return next(new AppError("This transaction is already fully paid", 400));
   }
 
   const amountPerInstallment = parseFloat((remainingAmount / numberOfInstallments).toFixed(2));
@@ -58,16 +92,16 @@ exports.generateInstallments = catchAsync(async (req, res, next) => {
   for (let i = 0; i < numberOfInstallments; i++) {
     // Determine the due date based on frequency
     if (i > 0) {
-      if (frequency === "شهري") { // monthly
+      if (frequency === "monthly") {
         currentDate.setMonth(currentDate.getMonth() + 1);
-      } else if (frequency === "ربع سنوي") { // quarterly
+      } else if (frequency === "quarterly") {
         currentDate.setMonth(currentDate.getMonth() + 3);
-      } else if (frequency === "نصف سنوي") { // semi-annually
+      } else if (frequency === "semi_annual") {
         currentDate.setMonth(currentDate.getMonth() + 6);
-      } else if (frequency === "سنوي") { // yearly
+      } else if (frequency === "yearly") {
         currentDate.setFullYear(currentDate.getFullYear() + 1);
       } else {
-        return next(new AppError("التردد غير مدعوم (Invalid frequency. use: شهري, ربع سنوي, نصف سنوي, سنوي)", 400));
+        return next(new AppError("Invalid frequency. Use: monthly, quarterly, semi_annual, yearly", 400));
       }
     }
 
@@ -87,7 +121,7 @@ exports.generateInstallments = catchAsync(async (req, res, next) => {
 
   const createdInstallments = await Installment.insertMany(installmentsToInsert);
   res.status(201).json({
-    message: "تم إنشاء الأقساط بنجاح (Installments generated successfully)",
+    message: "Installments generated successfully",
     count: createdInstallments.length,
     data: createdInstallments
   });

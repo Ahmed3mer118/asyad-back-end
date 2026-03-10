@@ -7,7 +7,8 @@ const { authorize } = require("../middleware/role.middleware");
 
 router.post("/", authenticate, authorize("admin", "employee"), installmentControllers.createInstallment);
 router.post("/generate", authenticate, authorize("admin", "employee"), installmentControllers.generateInstallments);
-router.get("/", authenticate, authorize("admin", "employee"), installmentControllers.getInstallments);
+router.get("/me", authenticate, installmentControllers.getMyInstallments);
+router.get("/", authenticate, installmentControllers.getInstallments);
 router.patch("/:id", authenticate, authorize("admin", "employee"), installmentControllers.updateInstallment);
 
 module.exports = router;

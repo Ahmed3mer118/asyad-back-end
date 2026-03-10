@@ -7,8 +7,10 @@ router.get("/byAdmin", authenticate, authorize("admin"), userControllers.getUser
 
 // current user profile (kept both paths for backward compatibility)
 router.get("/", authenticate, authorize("user", "admin", "owner", "employee"), userControllers.getUsersById);
+router.get("/:id", authenticate, authorize("admin"), userControllers.getUsersById);
 router.get("/me", authenticate, authorize("user", "admin", "owner", "employee"), userControllers.getUsersById);
 router.put("/update-status", authenticate, authorize("admin"), userControllers.adminUpdateUserStatus);
 // update user profile
 router.put("/me", authenticate, authorize("user", "admin"), userControllers.updateUserProfile);
+router.patch("/:id",authenticate,authorize("admin"),userControllers.updateUserRole);
 module.exports = router;

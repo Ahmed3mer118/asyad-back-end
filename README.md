@@ -76,7 +76,7 @@ npm start
 {
   "userId": "64f123...",
   "jobTitle": "سينيور وكيل عقاري",
-  "department": "المبيعات",
+  "department": "Sales",
   "salary": 8500,
   "commissionRate": 5,
   "hireDate": "2026-03-01T00:00:00.000Z",
@@ -92,7 +92,7 @@ npm start
 #### 2.4 Properties (`Property`)
 
 - حقول مطابقة تقريبًا لـ `Properties` في SQL:
-  - `name`, `description`, `statusSaleRent` (`بيع` | `إيجار`), `availability` (`متاح` | `مباع`), `propertyType`, `area`, `price`, `features`, `category` (`سكني` | `تجاري` | `صناعي`), `ownerId` (ref User), `location{country,city,address,lat,long}`, `details{bedrooms,bathrooms,area,furnished}`, `images[{url,isMain}]`, `isActive`, timestamps.
+  - `name`, `description`, `statusSaleRent` (`sale` | `rent`), `availability` (`available` | `sold`), `propertyType`, `area`, `price`, `features`, `category` (`residential` | `commercial` | `industrial`), `ownerId` (ref User), `location`, `details`, `images[{url,isMain}]`, `isActive`, timestamps.
 
 #### 2.5 Appointments (`Appointment`)
 
@@ -105,21 +105,21 @@ npm start
 #### 2.6 Transactions / Payments / Installments
 
 - `Transaction`:
-  - `propertyId`, `customerId`, `employeeId`, `transactionType` (`بيع` | `إيجار`), `transactionDate`, `totalAmount`, `paidAmount` + virtual `remainingAmount`.
+  - `propertyId`, `customerId`, `employeeId`, `transactionType` (`sale` | `rent`), `transactionDate`, `totalAmount`, `paidAmount` + virtual `remainingAmount`.
 - `PaymentMethod`:
   - `name` (مثل: `نقدي`, `تحويل بنكي`, `فيزا`...).
 - `Payment`:
-  - `transactionId`, `paymentMethodId`, `amount`, `paymentDate`, `status` (`مدفوع` | `جزئي` | `متأخر`), `notes`.
+  - `transactionId`, `paymentMethod` (`cash` | `visa` | `bank_transfer` | `check`), `amount`, `paymentDate`, `status` (`paid` | `partial` | `late` | `cancelled`), `notes`.
   - عند إنشاء Payment يتم تحديث `Transaction.paidAmount` (منطق بديل للتريجر).
 - `Installment`:
-  - `transactionId`, `dueDate`, `amount`, `paidAmount`, `paymentDate`, `status` (`مستحق` | `مدفوع` | `متأخر`), `notes`.
+  - `transactionId`, `installmentNo`, `paymentId`, `amount`, `paidAmount`, `dueDate`, `paymentDate`, `status` (`due` | `paid` | `late`), `notes`.
 
 #### 2.7 Favorites / Evaluations / EmailLogs / Tasks
 
 - `Favorite`: `customerId`, `propertyId` (index unique).
 - `Evaluation`: `employeeId`, `evaluatorId`, `appointmentId`, `transactionId`, `rating (1–5)`, `comments`, `evaluationDate`.
 - `EmailLog`: `userId`, `email`, `subject`, `message`, `status (Sent | Failed)`, `createdAt`.
-- `Task`: `employeeId`, `title`, `description`, `status` (`معلق`, `مقبول`, `مرفوض`, `مكتمل`), `dueDate`, timestamps.
+- `Task`: `employeeId`, `title`, `description`, `status` (`pending`, `accepted`, `rejected`, `completed`), `dueDate`, timestamps.
 
 ---
 

@@ -8,8 +8,8 @@ const taskByEmployeeSchema = new mongoose.Schema(
         notes: { type: String },
         status: {
             type: String,
-            enum: ["معلق", "مقبول", "مرفوض", "مكتمل"],
-            default: "معلق"
+            enum: ["pending", "accepted", "rejected", "completed"],
+            default: "pending"
         }
     },
     { timestamps: true }

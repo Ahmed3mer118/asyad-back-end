@@ -22,28 +22,67 @@ exports.createTransaction = catchAsync(async (req, res, next) => {
     paidAmount: paidAmount || 0
   });
 
-  if (transactionType === "بيع") {
-    await Property.findByIdAndUpdate(propertyId, { availability: "مباع" });
+  if (transactionType === "sale") {
+    await Property.findByIdAndUpdate(propertyId, { availability: "sold" });
   }
 
   logger.info("Transaction created", { transactionId: transaction.id, propertyId, customerId, employeeId });
   res.status(201).json({ message: "Transaction created", data: transaction });
 });
 
-exports.getTransactions = catchAsync(async (req, res) => {
-  const { customerId, employeeId, propertyId } = req.query;
+exports.getTransactions = catchAsync(async (req, res, next) => {
+  const { customerId, employeeId, propertyId, page = 1, limit = 20 } = req.query;
+  const isAdminOrEmployee = ["admin", "employee"].includes(String(req.user?.role || "").toLowerCase());
   const q = {};
-  if (customerId) q.customerId = customerId;
+
+  if (customerId) {
+    if (!isAdminOrEmployee && req.user._id.toString() !== customerId) {
+      return next(new AppError("You can only access your own transactions", 403));
+    }
+    q.customerId = customerId;
+  } else if (!isAdminOrEmployee) {
+    q.customerId = req.user._id;
+  }
   if (employeeId) q.employeeId = employeeId;
   if (propertyId) q.propertyId = propertyId;
 
-  const transactions = await Transaction.find(q)
-    .sort({ createdAt: -1 })
-    .populate("propertyId", "name price statusSaleRent availability")
-    .populate("customerId", "userName email phone_number")
-    .populate({ path: "employeeId", populate: { path: "userId", select: "userName email phone_number" } });
+  const skip = (Math.max(1, parseInt(page, 10)) - 1) * Math.max(1, parseInt(limit, 10));
+  const limitNum = Math.min(100, Math.max(1, parseInt(limit, 10)));
 
-  res.status(200).json({ message: "Transactions fetched", data: transactions });
+  const [transactions, total] = await Promise.all([
+    Transaction.find(q)
+      .sort({ transactionDate: -1, createdAt: -1 })
+      .skip(skip)
+      .limit(limitNum)
+      .populate("propertyId", "name price statusSaleRent availability")
+      .populate("customerId", "userName email phone_number")
+      .populate({ path: "employeeId", populate: { path: "userId", select: "userName email phone_number" } })
+      .lean(),
+    Transaction.countDocuments(q)
+  ]);
+
+  res.status(200).json({ data: transactions, total });
+});
+
+exports.getMyTransactions = catchAsync(async (req, res) => {
+  const { page = 1, limit = 20 } = req.query;
+  const userId = req.user._id;
+  const skip = (Math.max(1, parseInt(page, 10)) - 1) * Math.max(1, parseInt(limit, 10));
+  const limitNum = Math.min(100, Math.max(1, parseInt(limit, 10)));
+
+  const [transactions, total] = await Promise.all([
+    Transaction.find({ customerId: userId })
+      .sort({ transactionDate: -1, createdAt: -1 })
+      .skip(skip)
+      .limit(limitNum)
+      .populate("propertyId", "name price statusSaleRent availability")
+      .populate("customerId", "userName email phone_number")
+      .populate({ path: "employeeId", populate: { path: "userId", select: "userName email phone_number" } })
+      .lean(),
+    Transaction.countDocuments({ customerId: userId })
+  ]);
+
+  res.status(200).json({ data: transactions, total });
 });
 
 exports.getTransactionById = catchAsync(async (req, res, next) => {
