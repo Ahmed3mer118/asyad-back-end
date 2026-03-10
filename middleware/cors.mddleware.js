@@ -10,7 +10,7 @@ const corsOptions = {
             return cb(new Error("CORS POLICY Origin Not Allowed"))
         }
     },
-    credentials: true, // allow sending cookies / authirization headers
+    credentials: true, 
     mehtods:['GET','POST','PUT','DELETE'],
     allowedHeaders:["Content-Type","Authorization"]
 

@@ -2,9 +2,19 @@ const { createLogger, format, transports } = require("winston");
 const fs = require("fs");
 const path = require("path");
 
-const logsDir = path.join(process.cwd(), "logs");
-if (!fs.existsSync(logsDir)) {
-  fs.mkdirSync(logsDir, { recursive: true });
+const isVercel = !!process.env.VERCEL;
+const loggerTransports = [new transports.Console()];
+
+if (!isVercel) {
+  const logsDir = path.join(process.cwd(), "logs");
+  if (!fs.existsSync(logsDir)) {
+    fs.mkdirSync(logsDir, { recursive: true });
+  }
+  loggerTransports.push(
+    new transports.File({ filename: path.join(logsDir, "error.log"), level: "error" }),
+    new transports.File({ filename: path.join(logsDir, "success.log"), level: "info" }),
+    new transports.File({ filename: path.join(logsDir, "combined.log") })
+  );
 }
 
 const logger = createLogger({
@@ -18,12 +28,7 @@ const logger = createLogger({
       )}; Stack: ${stack ? stack : " "}`;
     })
   ),
-  transports: [
-    new transports.Console(),
-    new transports.File({ filename: path.join(logsDir, "error.log"), level: "error" }),
-    new transports.File({ filename: path.join(logsDir, "success.log"), level: "info" }),
-    new transports.File({ filename: path.join(logsDir, "combined.log") })
-  ]
+  transports: loggerTransports
 });
 
 module.exports = logger;

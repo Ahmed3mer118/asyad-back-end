@@ -1,0 +1,5 @@
+Timestamp: 2026/03/10 23:29:57; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/10 23:31:07; Level: INFO; Message: Request: GET /api/v1/transactions?page=1&limit=10 | Status: 304 | Duration: 646ms; Meta: {"user":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/10 23:35:38; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/10 23:41:56; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/10 23:42:11; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
