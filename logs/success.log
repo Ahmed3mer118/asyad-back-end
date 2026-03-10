@@ -4,3 +4,16 @@ Timestamp: 2026/03/10 23:35:38; Level: INFO; Message: Roles ensured; Meta: {"rol
 Timestamp: 2026/03/10 23:41:56; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
 Timestamp: 2026/03/10 23:42:11; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
 Timestamp: 2026/03/10 23:44:52; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/10 23:53:41; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/11 00:07:50; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 200 | Duration: 205ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 00:07:58; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 144ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 00:08:00; Level: INFO; Message: Request: GET /api/v1/transactions/me | Status: 304 | Duration: 787ms; Meta: {"user":"69af2de096c0d107c1b277c2"}; Stack:  
+Timestamp: 2026/03/11 00:08:01; Level: INFO; Message: Request: GET /api/v1/installments/me | Status: 304 | Duration: 419ms; Meta: {"user":"69af2de096c0d107c1b277c2"}; Stack:  
+Timestamp: 2026/03/11 00:08:02; Level: INFO; Message: Request: GET /api/v1/payments/me | Status: 304 | Duration: 392ms; Meta: {"user":"69af2de096c0d107c1b277c2"}; Stack:  
+Timestamp: 2026/03/11 00:08:02; Level: INFO; Message: Request: GET /api/v1/transactions/me | Status: 304 | Duration: 541ms; Meta: {"user":"69af2de096c0d107c1b277c2"}; Stack:  
+Timestamp: 2026/03/11 00:08:03; Level: INFO; Message: Request: GET /api/v1/installments/me | Status: 304 | Duration: 412ms; Meta: {"user":"69af2de096c0d107c1b277c2"}; Stack:  
+Timestamp: 2026/03/11 00:08:03; Level: INFO; Message: Request: GET /api/v1/payments/me | Status: 304 | Duration: 377ms; Meta: {"user":"69af2de096c0d107c1b277c2"}; Stack:  
+Timestamp: 2026/03/11 00:08:03; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 137ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 00:08:39; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 401 | Duration: 1247ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 00:09:04; Level: INFO; Message: Request: GET /api/v1/auth/login | Status: 404 | Duration: 10ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 00:16:40; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  

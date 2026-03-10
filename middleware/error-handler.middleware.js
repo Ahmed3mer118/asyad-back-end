@@ -1,9 +1,10 @@
 const logger = require("../utils/logger.util");
+
 module.exports = (err, req, res, next) => {
   err.statusCode = err.statusCode || 500;
   err.status = err.status || "error";
 
-  logger.error(`Error: ${req.method} | ${req.originalUrl} | ${err.message};`, {
+  logger.error(`Error: ${req.method} | ${req.originalUrl} | ${err.message}`, {
     stack: err.stack,
     user: req.user?.id,
     statusCode: err.statusCode
@@ -25,8 +26,14 @@ module.exports = (err, req, res, next) => {
         message: err.message
       });
     }
-    return res.status(500).json({ message: "Somthing Went Wrong", status: "Error" });
+    return res.status(500).json({
+      status: "error",
+      message: "Something went wrong"
+    });
   }
 
-  res.status(err.statusCode).json({ status: err.status, message: err.message });
+  res.status(err.statusCode).json({
+    status: err.status,
+    message: err.message
+  });
 };
