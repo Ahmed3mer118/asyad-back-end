@@ -1,16 +1,18 @@
 const express = require("express");
 const router = express.Router();
-const userControllers = require("../controllers/userControllers")
-const { authenticate } = require('../middleware/auth.middleware');
-const { authorize } = require('../middleware/role.middleware');
-router.get("/byAdmin", authenticate, authorize("admin"), userControllers.getUsers);
+const userControllers = require("../controllers/userControllers");
+const { authenticate } = require("../middleware/auth.middleware");
+const { authorize } = require("../middleware/role.middleware");
 
-// current user profile (kept both paths for backward compatibility)
-router.get("/", authenticate, authorize("user", "admin", "owner", "employee"), userControllers.getUsersById);
-router.get("/:id", authenticate, authorize("admin"), userControllers.getUsersById);
+// Specific routes first (before /:id so "me" is not treated as id)
+router.get("/byAdmin", authenticate, authorize("admin"), userControllers.getUsers);
 router.get("/me", authenticate, authorize("user", "admin", "owner", "employee"), userControllers.getUsersById);
+router.get("/", authenticate, authorize("user", "admin", "owner", "employee"), userControllers.getUsersById);
 router.put("/update-status", authenticate, authorize("admin"), userControllers.adminUpdateUserStatus);
-// update user profile
 router.put("/me", authenticate, authorize("user", "admin"), userControllers.updateUserProfile);
-router.patch("/:id",authenticate,authorize("admin"),userControllers.updateUserRole);
+
+// Parameterized routes last
+router.get("/:id", authenticate, authorize("admin"), userControllers.getUsersById);
+router.patch("/:id", authenticate, authorize("admin"), userControllers.updateUserRole);
+
 module.exports = router;

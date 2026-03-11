@@ -17,3 +17,95 @@ Timestamp: 2026/03/11 00:08:03; Level: INFO; Message: Request: GET /api/v1/prope
 Timestamp: 2026/03/11 00:08:39; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 401 | Duration: 1247ms; Meta: {}; Stack:  
 Timestamp: 2026/03/11 00:09:04; Level: INFO; Message: Request: GET /api/v1/auth/login | Status: 404 | Duration: 10ms; Meta: {}; Stack:  
 Timestamp: 2026/03/11 00:16:40; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/11 00:39:54; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/11 00:50:58; Level: INFO; Message: Request: GET /api/v1/transactions/me | Status: 200 | Duration: 638ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 00:50:58; Level: INFO; Message: Request: GET /api/v1/installments/me | Status: 304 | Duration: 396ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 00:50:59; Level: INFO; Message: Request: GET /api/v1/payments/me | Status: 304 | Duration: 389ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 01:24:28; Level: INFO; Message: Request: GET /api/v1/transactions/me | Status: 304 | Duration: 799ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 01:24:28; Level: INFO; Message: Request: GET /api/v1/installments/me | Status: 304 | Duration: 407ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 01:24:29; Level: INFO; Message: Request: GET /api/v1/payments/me | Status: 304 | Duration: 383ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 01:26:14; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 200 | Duration: 611ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 01:27:58; Level: INFO; Message: Request: GET /api/v1/transactions/me | Status: 304 | Duration: 528ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 01:27:58; Level: INFO; Message: Request: GET /api/v1/installments/me | Status: 304 | Duration: 404ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 01:27:59; Level: INFO; Message: Request: GET /api/v1/payments/me | Status: 304 | Duration: 433ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 01:29:16; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 138ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 01:36:12; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 134ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 01:39:36; Level: INFO; Message: Request: GET /api/v1/properties?page=1&limit=8&availability=available&sort=-createdAt | Status: 200 | Duration: 154ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 01:39:39; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 139ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 01:39:45; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 130ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 01:39:49; Level: INFO; Message: Request: GET /api/v1/properties?page=1&limit=8&availability=available&sort=-createdAt | Status: 304 | Duration: 136ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 01:39:54; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 132ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 01:42:39; Level: INFO; Message: Request: GET /api/v1/transactions/me | Status: 304 | Duration: 591ms; Meta: {"user":"69af2de096c0d107c1b277c2"}; Stack:  
+Timestamp: 2026/03/11 01:42:40; Level: INFO; Message: Request: GET /api/v1/installments/me | Status: 304 | Duration: 405ms; Meta: {"user":"69af2de096c0d107c1b277c2"}; Stack:  
+Timestamp: 2026/03/11 01:42:40; Level: INFO; Message: Request: GET /api/v1/payments/me | Status: 304 | Duration: 377ms; Meta: {"user":"69af2de096c0d107c1b277c2"}; Stack:  
+Timestamp: 2026/03/11 02:00:23; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 134ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:00:55; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 200 | Duration: 569ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:00:56; Level: INFO; Message: User fetched own profile; Meta: {"userId":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/11 02:00:56; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/11 02:00:56; Level: INFO; Message: Request: GET /api/v1/users/me | Status: 500 | Duration: 565ms; Meta: {"user":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/11 02:01:19; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 200 | Duration: 354ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:01:20; Level: INFO; Message: User fetched own profile; Meta: {"userId":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/11 02:01:20; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
+    at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/03/11 02:01:20; Level: INFO; Message: Request: GET /api/v1/users/me | Status: 500 | Duration: 446ms; Meta: {"user":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/11 02:12:00; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/11 02:12:07; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 200 | Duration: 1050ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:12:08; Level: INFO; Message: User fetched own profile; Meta: {"userId":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/11 02:12:08; Level: INFO; Message: Request: GET /api/v1/users/me | Status: 200 | Duration: 481ms; Meta: {"user":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/11 02:12:16; Level: INFO; Message: Request: GET /api/v1/requests?limit=5&sort=-createdAt | Status: 404 | Duration: 10ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:12:16; Level: INFO; Message: Request: GET /api/v1/properties?limit=5&sort=-createdAt | Status: 200 | Duration: 170ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:13:03; Level: INFO; Message: Request: GET /api/v1/properties?page=1&limit=10 | Status: 200 | Duration: 165ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:15:22; Level: INFO; Message: Request: GET /api/v1/appointments?page=1&limit=10 | Status: 200 | Duration: 430ms; Meta: {"user":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/11 02:15:22; Level: INFO; Message: Request: GET /api/v1/properties/69b03bf1def42d0a329b89c8 | Status: 200 | Duration: 134ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:15:22; Level: INFO; Message: Request: GET /api/v1/properties/69b01986dae8b648ffb24f3f | Status: 304 | Duration: 139ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:15:22; Level: INFO; Message: Request: GET /api/v1/properties/69af534fb41b1c4a250db117 | Status: 200 | Duration: 144ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:15:22; Level: INFO; Message: User fetched own profile; Meta: {"userId":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/11 02:15:22; Level: INFO; Message: Request: GET /api/v1/users/69a8a8dd5da62df9e2575452 | Status: 200 | Duration: 398ms; Meta: {"user":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/11 02:15:22; Level: INFO; Message: User fetched own profile; Meta: {"userId":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/11 02:15:22; Level: INFO; Message: Request: GET /api/v1/users/69af2de096c0d107c1b277c2 | Status: 200 | Duration: 404ms; Meta: {"user":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/11 02:15:23; Level: INFO; Message: Request: GET /api/v1/properties/69af538fb41b1c4a250db11c | Status: 304 | Duration: 1031ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:15:32; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 147ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:18:39; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 164ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:19:38; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 401 | Duration: 277ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:20:20; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 151ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:21:20; Level: INFO; Message: Request: GET /api/v1/properties?limit=3&sort=-createdAt | Status: 200 | Duration: 181ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:23:58; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 401 | Duration: 258ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:24:39; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 401 | Duration: 327ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:25:00; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 401 | Duration: 379ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:25:32; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 404 | Duration: 131ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:25:40; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 404 | Duration: 126ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:25:47; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 404 | Duration: 127ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:25:52; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 200 | Duration: 359ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:25:52; Level: INFO; Message: Request: GET /api/v1/users/me | Status: 403 | Duration: 154ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 02:28:23; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 200 | Duration: 283ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:28:24; Level: INFO; Message: Request: GET /api/v1/users/me | Status: 403 | Duration: 160ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 02:28:31; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 200 | Duration: 292ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:28:32; Level: INFO; Message: Request: GET /api/v1/users/me | Status: 403 | Duration: 158ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 02:29:09; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 200 | Duration: 348ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:29:10; Level: INFO; Message: User fetched own profile; Meta: {"userId":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/11 02:29:10; Level: INFO; Message: Request: GET /api/v1/users/me | Status: 200 | Duration: 1451ms; Meta: {"user":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/11 02:29:14; Level: INFO; Message: Request: GET /api/v1/requests?limit=5&sort=-createdAt | Status: 404 | Duration: 483ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:29:14; Level: INFO; Message: Request: GET /api/v1/properties?limit=5&sort=-createdAt | Status: 304 | Duration: 153ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:29:22; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 157ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:29:28; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 148ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:29:38; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 200 | Duration: 425ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:29:38; Level: INFO; Message: Request: GET /api/v1/users/me | Status: 403 | Duration: 179ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 02:34:10; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 220ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:34:51; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 142ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:34:57; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 146ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:35:07; Level: INFO; Message: Request: GET /api/v1/appointments/me | Status: 200 | Duration: 1852ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 02:35:20; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 166ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:35:41; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 200 | Duration: 354ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:35:41; Level: INFO; Message: Request: GET /api/v1/users/me | Status: 403 | Duration: 130ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 02:43:13; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/03/11 02:43:18; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 200 | Duration: 311ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:43:18; Level: INFO; Message: User fetched own profile; Meta: {"userId":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 02:43:18; Level: INFO; Message: Request: GET /api/v1/users/me | Status: 200 | Duration: 447ms; Meta: {"user":"69a8a8dd5da62df9e2575452"}; Stack:  
+Timestamp: 2026/03/11 02:43:20; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 167ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:43:29; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt&availability=available | Status: 304 | Duration: 156ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:43:54; Level: INFO; Message: Request: POST /api/v1/auth/login | Status: 200 | Duration: 421ms; Meta: {}; Stack:  
+Timestamp: 2026/03/11 02:43:54; Level: INFO; Message: User fetched own profile; Meta: {"userId":"69aeba814f93e2a8aaa58faa"}; Stack:  
+Timestamp: 2026/03/11 02:43:54; Level: INFO; Message: Request: GET /api/v1/users/me | Status: 200 | Duration: 404ms; Meta: {"user":"69aeba814f93e2a8aaa58faa"}; Stack:  

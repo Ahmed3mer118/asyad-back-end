@@ -29,7 +29,6 @@ exports.getUsersById = async (req, res) => {
     }
 
     logger.info("User fetched own profile", { userId: user.id });
-    conosle.log(user)
     return res.status(200).json({
       message: "User retrieved successfully.",
       data: user
