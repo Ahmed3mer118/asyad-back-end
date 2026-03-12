@@ -1,5 +1,6 @@
 const Transaction = require("../models/Transaction.model");
 const Property = require("../models/Property.model");
+const Employee = require("../models/Employee.model");
 const catchAsync = require("../utils/catch-async.util");
 const AppError = require("../utils/app-error.util");
 const logger = require("../utils/logger.util");
@@ -13,13 +14,19 @@ exports.createTransaction = catchAsync(async (req, res, next) => {
   const property = await Property.findById(propertyId);
   if (!property) return next(new AppError("Property not found", 404));
 
+  const employee = await Employee.findById(employeeId);
+  if (!employee) return next(new AppError("Employee not found", 404));
+
+  const commissionRateAtTime = employee.currentCommissionRate ?? employee.commissionRate ?? undefined;
+
   const transaction = await Transaction.create({
     propertyId,
     customerId,
     employeeId,
     transactionType,
     totalAmount,
-    paidAmount: paidAmount || 0
+    paidAmount: paidAmount || 0,
+    ...(commissionRateAtTime != null && { commissionRateAtTime })
   });
 
   if (transactionType === "sale") {

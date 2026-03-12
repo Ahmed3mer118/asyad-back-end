@@ -10,7 +10,14 @@ const employeeSchema = new mongoose.Schema(
     },
     jobTitle: { type: String }, 
     department: { type: String }, 
-    salary: { type: Number }, 
+    salary: { type: Number },
+    /** النسبة الحالية للعمليات الجديدة فقط؛ تغييرها لا يؤثر على العمليات السابقة */
+    currentCommissionRate: {
+      type: Number,
+      min: 0,
+      max: 100
+    },
+    /** للتوافق مع الإصدارات السابقة؛ يفضّل استخدام currentCommissionRate */
     commissionRate: {
       type: Number,
       min: 0,

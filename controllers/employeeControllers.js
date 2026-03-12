@@ -12,6 +12,7 @@ exports.createEmployee = catchAsync(async (req, res, next) => {
     department,
     salary,
     commissionRate,
+    currentCommissionRate,
     hireDate,
     employmentType,
     yearsOfExperience
@@ -24,12 +25,14 @@ exports.createEmployee = catchAsync(async (req, res, next) => {
   const existingEmployee = await Employee.findOne({ userId });
   if (existingEmployee) return next(new AppError("Employee already exists for this user", 409));
 
+  const rate = currentCommissionRate ?? commissionRate;
   const employee = await Employee.create({
     userId,
     jobTitle,
     department,
     salary,
-    commissionRate,
+    currentCommissionRate: rate,
+    commissionRate: rate,
     hireDate,
     employmentType,
     yearsOfExperience

@@ -8,7 +8,9 @@ const transactionSchema = new mongoose.Schema(
         transactionType: { type: String, enum: ["sale", "rent"], required: true },
         transactionDate: { type: Date, default: Date.now },
         totalAmount: { type: Number, required: true },
-        paidAmount: { type: Number, default: 0 }
+        paidAmount: { type: Number, default: 0 },
+        /** نسبة عمولة الموظف وقت إتمام هذه المعاملة؛ لا تتأثر عند تغيير currentCommissionRate لاحقاً */
+        commissionRateAtTime: { type: Number, min: 0, max: 100 }
     },
     { timestamps: true }
 );
