@@ -4,3 +4,18 @@ Timestamp: 2026/03/11 02:00:56; Level: ERROR; Message: Error while getting user 
 Timestamp: 2026/03/11 02:01:20; Level: ERROR; Message: Error while getting user by id; Meta: {"error":"conosle is not defined"}; Stack: ReferenceError: conosle is not defined
     at exports.getUsersById (H:\Graduation-project\Graduation-Project-backend\controllers\userControllers.js:32:5)
     at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+Timestamp: 2026/04/07 12:05:52; Level: ERROR; Message: Failed to ensure roles; Meta: {"error":"Operation `roles.updateOne()` buffering timed out after 10000ms"}; Stack: MongooseError: Operation `roles.updateOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:588:17)
+    at process.processTimers (node:internal/timers:523:7)
+Timestamp: 2026/04/21 12:02:33; Level: ERROR; Message: Error fetching properties; Meta: {"error":"getaddrinfo ENOTFOUND ac-ffilwqm-shard-00-01.wx2ryhv.mongodb.net"}; Stack: MongoServerSelectionError: getaddrinfo ENOTFOUND ac-ffilwqm-shard-00-01.wx2ryhv.mongodb.net
+    at Topology.selectServer (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\sdam\topology.js:326:38)
+    at runNextTicks (node:internal/process/task_queues:65:5)
+    at listOnTimeout (node:internal/timers:549:9)
+    at process.processTimers (node:internal/timers:523:7)
+    at async tryOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:145:18)
+    at async executeOperation (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\operations\execute_operation.js:75:16)
+    at async AggregationCursor._initialize (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\cursor\aggregation_cursor.js:56:26)
+    at async AggregationCursor.cursorInit (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:633:27)
+    at async AggregationCursor.fetchBatch (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:667:13)
+    at async AggregationCursor.next (H:\Graduation-project\Graduation-Project-backend\node_modules\mongodb\lib\cursor\abstract_cursor.js:347:17)

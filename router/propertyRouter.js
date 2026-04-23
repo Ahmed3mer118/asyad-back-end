@@ -3,6 +3,7 @@ const router = express.Router();
 const propertyControllers = require("../controllers/propertyControllers");
 const { authenticate } = require("../middleware/auth.middleware");
 const { authorize } = require("../middleware/role.middleware");
+const uploads = require("../middleware/uploads.middleware");
 
 router.get("/", propertyControllers.getProperties);
 router.get("/:id", propertyControllers.getPropertyById);
@@ -19,6 +20,14 @@ router.patch(
   authenticate,
   authorize("admin", "owner"),
   propertyControllers.updateProperty
+);
+
+router.post(
+  "/:id/images",
+  authenticate,
+  authorize("admin", "owner"),
+  uploads.array("images", 12),
+  propertyControllers.uploadPropertyImages
 );
 
 router.patch(

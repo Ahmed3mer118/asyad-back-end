@@ -8,6 +8,7 @@ const app = express();
 
 app.use(corsMiddleware);
 app.use(express.json());
+app.use("/uploads", express.static("uploads"));
 
 app.use((req, res, next) => {
   const start = Date.now();

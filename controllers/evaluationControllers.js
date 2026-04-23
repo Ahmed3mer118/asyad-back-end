@@ -33,14 +33,25 @@ exports.createEvaluation = catchAsync(async (req, res, next) => {
     });
   }
 
-  res.status(201).json({ message: "Evaluation created", data: evaluation });
+  const populated = await Evaluation.findById(evaluation._id)
+    .populate("evaluatorId", "userName email phone_number")
+    .lean();
+  const data = populated ? { ...populated, ratingBy: populated.evaluatorId || null } : evaluation;
+  res.status(201).json({ message: "Evaluation created", data });
 });
 
 exports.getEvaluations = catchAsync(async (req, res) => {
   const { employeeId } = req.query;
   const q = {};
   if (employeeId) q.employeeId = employeeId;
-  const evaluations = await Evaluation.find(q).sort({ createdAt: -1 });
-  res.status(200).json({ message: "Evaluations fetched", data: evaluations });
+  const evaluations = await Evaluation.find(q)
+    .sort({ createdAt: -1 })
+    .populate("evaluatorId", "userName email phone_number")
+    .lean();
+  const data = evaluations.map((e) => ({
+    ...e,
+    ratingBy: e.evaluatorId || null
+  }));
+  res.status(200).json({ message: "Evaluations fetched", data });
 });
 

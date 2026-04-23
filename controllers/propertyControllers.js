@@ -1,6 +1,42 @@
 const Property = require("../models/Property.model");
 const logger = require("../utils/logger.util");
 
+const normalizeImages = (images) => {
+  if (!Array.isArray(images)) return [];
+  const normalized = images
+    .map((img, idx) => {
+      if (!img) return null;
+      if (typeof img === "string") {
+        return { url: img, isMain: idx === 0, order: idx };
+      }
+      const url = img.url || img.path;
+      if (!url) return null;
+      return {
+        url,
+        isMain: Boolean(img.isMain),
+        order: Number.isFinite(Number(img.order)) ? Number(img.order) : idx
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.order - b.order)
+    .map((img, idx) => ({ ...img, order: idx }));
+
+  if (!normalized.length) return normalized;
+  const hasMain = normalized.some((img) => img.isMain);
+  if (!hasMain) normalized[0].isMain = true;
+  if (hasMain) {
+    let found = false;
+    for (const img of normalized) {
+      if (img.isMain && !found) {
+        found = true;
+      } else {
+        img.isMain = false;
+      }
+    }
+  }
+  return normalized;
+};
+
 exports.createProperty = async (req, res) => {
   try {
     const {
@@ -21,13 +57,7 @@ exports.createProperty = async (req, res) => {
 
     const finalOwnerId = ownerId || req.user._id;
 
-    const normalizedImages = Array.isArray(images)
-      ? images.map((img, idx) => {
-          if (!img) return null;
-          if (typeof img === "string") return { url: img, isMain: idx === 0 };
-          return { url: img.url, isMain: Boolean(img.isMain) };
-        }).filter(Boolean)
-      : [];
+    const normalizedImages = normalizeImages(images);
 
     const property = await Property.create({
       name,
@@ -129,13 +159,7 @@ exports.updateProperty = async (req, res) => {
     const updates = req.body;
 
     if (Array.isArray(updates.images)) {
-      updates.images = updates.images
-        .map((img, idx) => {
-          if (!img) return null;
-          if (typeof img === "string") return { url: img, isMain: idx === 0 };
-          return { url: img.url, isMain: Boolean(img.isMain) };
-        })
-        .filter(Boolean);
+      updates.images = normalizeImages(updates.images);
     }
 
     const property = await Property.findByIdAndUpdate(id, updates, { new: true });
@@ -150,6 +174,45 @@ exports.updateProperty = async (req, res) => {
   } catch (error) {
     logger.error("Error updating property", { error: error.message, stack: error.stack });
     res.status(500).json({ message: "Error updating property" });
+  }
+};
+
+exports.uploadPropertyImages = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const property = await Property.findById(id);
+    if (!property || !property.isActive) {
+      return res.status(404).json({ message: "Property not found" });
+    }
+
+    const files = Array.isArray(req.files) ? req.files : [];
+    if (!files.length) {
+      return res.status(400).json({ message: "No files uploaded" });
+    }
+
+    const baseUrl = `${req.protocol}://${req.get("host")}`;
+    const uploaded = files.map((file, idx) => ({
+      url: `${baseUrl}/uploads/${file.filename}`,
+      isMain: false,
+      order: (property.images?.length || 0) + idx
+    }));
+
+    property.images = [...(property.images || []), ...uploaded];
+    property.images = normalizeImages(property.images);
+    await property.save();
+
+    logger.info("Property images uploaded", {
+      propertyId: property._id,
+      count: uploaded.length
+    });
+
+    return res.status(201).json({
+      message: "Property images uploaded successfully",
+      data: { images: uploaded }
+    });
+  } catch (error) {
+    logger.error("Error uploading property images", { error: error.message, stack: error.stack });
+    return res.status(500).json({ message: "Error uploading property images" });
   }
 };
 

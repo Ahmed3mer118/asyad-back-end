@@ -54,7 +54,8 @@ const propertySchema = new mongoose.Schema(
     images: [
       {
         url: { type: String, required: true },
-        isMain: { type: Boolean, default: false }
+        isMain: { type: Boolean, default: false },
+        order: { type: Number, default: 0 }
       }
     ],
     isActive: {
