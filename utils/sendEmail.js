@@ -1,17 +1,43 @@
 const nodemailer = require("nodemailer");
 
+// ASYAD brand palette (deep green + gold)
+const BRAND_PRIMARY = "#1F4B43";
+const BRAND_PRIMARY_SOFT = "#E8F1EF";
+const BRAND_ACCENT = "#C8A45D";
+const BRAND_TEXT = "#1D2B28";
+const BRAND_MUTED = "#6B7D78";
+
+const parseBoolean = (value, fallback) => {
+  if (value === undefined || value === null || value === "") return fallback;
+  return String(value).toLowerCase() === "true";
+};
+
+const createTransporter = () => {
+  // In local/dev environments behind proxy/corporate certificates,
+  // SMTP may fail unless certificate verification is relaxed.
+  const rejectUnauthorized = parseBoolean(
+    process.env.EMAIL_TLS_REJECT_UNAUTHORIZED,
+    process.env.NODE_ENV === "production"
+  );
+
+  return nodemailer.createTransport({
+    service: process.env.EMAIL_SERVICE,
+    auth: {
+      user: process.env.EMAIL_USER,
+      pass: process.env.EMAIL_PASS
+    },
+    tls: {
+      rejectUnauthorized
+    }
+  });
+};
+
 const sendEmail = async (options) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: process.env.EMAIL_SERVICE,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
+    const transporter = createTransporter();
 
     const mailOptions = {
-      from: `"Vemoda" <${process.env.EMAIL_USER}>`,
+      from: `"ASYAD" <${process.env.EMAIL_USER}>`,
       to: options.to,
       subject: options.subject,
       text: options.message,
@@ -23,21 +49,15 @@ const sendEmail = async (options) => {
     return true;
   } catch (error) {
     console.error('Error sending email:', error);
-    // throw new Error('Failed to send email');
+    throw error;
   }
 };
 const sendEmailToAdmin = async (options) => {
   try {
-    const transporter = nodemailer.createTransport({
-      service: process.env.EMAIL_SERVICE,
-      auth: {
-        user: process.env.EMAIL_USER,
-        pass: process.env.EMAIL_PASS
-      }
-    });
+    const transporter = createTransporter();
 
     const mailOptions = {
-      from: `"Vemoda" <${process.env.EMAIL_USER}>`,
+      from: `"ASYAD" <${process.env.EMAIL_USER}>`,
       to: options.to,
       subject: options.subject,
       text: options.message,
@@ -48,10 +68,9 @@ const sendEmailToAdmin = async (options) => {
     return true;
   } catch (error) {
     console.error('Error sending email:', error);
-    // throw new Error('Failed to send email');
+    throw error;
   }
 };
-
 
 const extractCode = (text) => {
   const match = text.match(/\d{4,6}/);
@@ -69,9 +88,9 @@ const generateEmailTemplate = (options) => {
         <style>
           body {
             font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
-            background-color: #2F5249;
+            background-color: ${BRAND_PRIMARY};
             padding: 2rem;
-            color: #1f2937;
+            color: ${BRAND_TEXT};
           }
           .container {
             max-width: 600px;
@@ -83,7 +102,7 @@ const generateEmailTemplate = (options) => {
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
           }
           .header {
-            background-color: #4f46e5;
+            background-color: ${BRAND_PRIMARY};
             color: white;
             text-align: center;
             padding: 1.5rem;
@@ -102,14 +121,15 @@ const generateEmailTemplate = (options) => {
           .content p {
             margin-bottom: 1rem;
             font-size: 1rem;
-            color: #2F5249;
+            color: ${BRAND_TEXT};
           }
           .code {
             font-size: 2rem;
             font-weight: 700;
             letter-spacing: 0.2em;
-            color: #4f46e5;
-            background-color: #eef2ff;
+            color: ${BRAND_PRIMARY};
+            background-color: ${BRAND_PRIMARY_SOFT};
+            border: 1px dashed ${BRAND_ACCENT};
             padding: 1rem;
             text-align: center;
             border-radius: 0.5rem;
@@ -117,8 +137,8 @@ const generateEmailTemplate = (options) => {
           }
           .button {
             display: inline-block;
-            background-color: #4f46e5;
-            color: white;
+            background-color: ${BRAND_ACCENT};
+            color: ${BRAND_TEXT};
             padding: 0.75rem 1.5rem;
             text-decoration: none;
             border-radius: 0.5rem;
@@ -130,13 +150,13 @@ const generateEmailTemplate = (options) => {
             text-align: center;
             padding: 1.5rem;
             font-size: 0.875rem;
-            color: #9ca3af;
+            color: ${BRAND_MUTED};
           }
         </style>
       </head>
       <body>
         <div class="container">
-          <div class="header">Vemoda</div>
+          <div class="header">ASYAD</div>
           <div class="content">
             <h2>${options.subject}</h2>
             <p>Hello ${options.to || 'User'},</p>
@@ -153,7 +173,7 @@ const generateEmailTemplate = (options) => {
       : ''
     }
           </div>
-          <div class="footer">&copy; ${new Date().getFullYear()} Vemoda. All rights reserved.</div>
+          <div class="footer">&copy; ${new Date().getFullYear()} ASYAD. All rights reserved.</div>
         </div>
       </body>
     </html>
@@ -170,9 +190,9 @@ const generateAdminAlertTemplate = (options) => {
         <style>
           body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f3f4f6;
+            background-color: ${BRAND_PRIMARY_SOFT};
             padding: 2rem;
-            color: #374151;
+            color: ${BRAND_TEXT};
           }
           .container {
             max-width: 650px;
@@ -183,7 +203,7 @@ const generateAdminAlertTemplate = (options) => {
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
           }
           .header {
-            background-color: #dc2626;
+            background-color: ${BRAND_PRIMARY};
             color: white;
             padding: 1.5rem;
             text-align: center;
@@ -201,7 +221,7 @@ const generateAdminAlertTemplate = (options) => {
             padding: 2rem;
           }
           .content h2 {
-            color: #1f2937;
+            color: ${BRAND_TEXT};
             font-size: 1.25rem;
             margin-bottom: 1.5rem;
             font-weight: 600;
@@ -227,17 +247,17 @@ const generateAdminAlertTemplate = (options) => {
             border-bottom: none;
           }
           .stock-critical {
-            color: #dc2626;
+            color: #B42318;
             font-weight: 600;
           }
           .stock-warning {
-            color: #d97706;
+            color: ${BRAND_ACCENT};
             font-weight: 600;
           }
           .action-button {
             display: inline-block;
-            background-color: #2563eb;
-            color: white;
+            background-color: ${BRAND_ACCENT};
+            color: ${BRAND_TEXT};
             padding: 0.75rem 1.5rem;
             text-decoration: none;
             border-radius: 0.375rem;
@@ -248,7 +268,7 @@ const generateAdminAlertTemplate = (options) => {
             text-align: center;
             padding: 1.5rem;
             font-size: 0.875rem;
-            color: #6b7280;
+            color: ${BRAND_MUTED};
             border-top: 1px solid #e5e7eb;
           }
         </style>

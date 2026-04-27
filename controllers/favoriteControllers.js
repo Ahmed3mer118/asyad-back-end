@@ -9,6 +9,7 @@ exports.addFavorite = catchAsync(async (req, res, next) => {
 
   const existing = await Favorite.findOne({ customerId: req.user._id, propertyId });
   if (existing) {
+    await FavoriteEvent.create({ customerId: req.user._id, propertyId, action: "added" });
     return res.status(200).json({ message: "Already in favorites", data: existing });
   }
 
@@ -31,9 +32,7 @@ exports.removeFavorite = catchAsync(async (req, res) => {
   res.status(204).send();
 });
 
-/**
- * إحصائيات المفضلة لعقار: كم مهتم حالياً، كم أضاف، كم شال
- */
+
 exports.getPropertyFavoriteStats = catchAsync(async (req, res, next) => {
   const { propertyId } = req.params;
   const [currentCount, addedCount, removedCount] = await Promise.all([
@@ -79,8 +78,8 @@ exports.getPopularByFavorites = catchAsync(async (req, res) => {
   const match = { isActive: true };
   if (city) match["location.city"] = new RegExp(city, "i");
 
-  const popular = await Favorite.aggregate([
-    { $match: {} },
+  const popular = await FavoriteEvent.aggregate([
+    { $match: { action: "added" } },
     { $group: { _id: "$propertyId", count: { $sum: 1 } } },
     { $sort: { count: -1 } },
     { $limit: Math.min(100, parseInt(limit, 10) || 20) },

@@ -6,6 +6,13 @@ const { authorize } = require("../middleware/role.middleware");
 const uploads = require("../middleware/uploads.middleware");
 
 router.get("/", propertyControllers.getProperties);
+router.get(
+  "/admin/all",
+  authenticate,
+  authorize("admin", "owner"),
+  propertyControllers.getPropertiesForAdmin
+);
+router.get("/slug/:slug", propertyControllers.getPropertyBySlug);
 router.get("/:id", propertyControllers.getPropertyById);
 
 router.post(
@@ -35,6 +42,13 @@ router.patch(
   authenticate,
   authorize("admin", "owner"),
   propertyControllers.deactivateProperty
+);
+
+router.patch(
+  "/:id/activate",
+  authenticate,
+  authorize("admin", "owner"),
+  propertyControllers.activateProperty
 );
 
 module.exports = router;

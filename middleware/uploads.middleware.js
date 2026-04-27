@@ -4,8 +4,9 @@ const path = require('path');
 // npm i file-type => chick mine file after upload
 const fileFilter = (req, file, cb) => {
     const ext = path.extname(file.originalname).toLowerCase()
-    const allowedExt = ['.jpg', '.jpeg', '.png'];
-    if (allowedExt.includes(ext)) {
+    const allowedExt = ['.jpg', '.jpeg', '.png', '.webp', '.gif', '.jfif'];
+    const allowedMime = ['image/jpeg', 'image/png', 'image/webp', 'image/gif'];
+    if (allowedExt.includes(ext) || allowedMime.includes(file.mimetype)) {
         cb(null, true);
     } else {
         return cb(new Error('Invalid file type'));

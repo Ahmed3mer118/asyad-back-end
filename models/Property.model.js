@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const slugify = require("slugify");
 
 const detailsSchema = new mongoose.Schema(
   {
@@ -15,6 +16,7 @@ const locationSchema = new mongoose.Schema(
     country: String,
     city: String,
     address: String,
+    googleMapsUrl: String,
     latitude: Number,
     longitude: Number
   },
@@ -24,6 +26,7 @@ const locationSchema = new mongoose.Schema(
 const propertySchema = new mongoose.Schema(
   {
     name: { type: String, required: true },
+    slug: { type: String, unique: true, index: true },
     description: { type: String },
     statusSaleRent: {
       type: String,
@@ -32,7 +35,7 @@ const propertySchema = new mongoose.Schema(
     },
     availability: {
       type: String,
-      enum: ["available", "sold"],
+      enum: ["available", "sold", "unavailable"],
       default: "available"
     },
     propertyType: { type: String },
@@ -70,6 +73,21 @@ const propertySchema = new mongoose.Schema(
 
 propertySchema.pre("validate", function (next) {
   if (!this.name && this.title) this.name = this.title;
+  next();
+});
+
+propertySchema.pre("save", async function (next) {
+  if (!this.isModified("name") && this.slug) return next();
+
+  const baseSlug = slugify(String(this.name || ""), { lower: true, strict: true, trim: true }) || "property";
+  let finalSlug = baseSlug;
+  let counter = 1;
+
+  while (await this.constructor.exists({ slug: finalSlug, _id: { $ne: this._id } })) {
+    finalSlug = `${baseSlug}-${counter++}`;
+  }
+
+  this.slug = finalSlug;
   next();
 });
 

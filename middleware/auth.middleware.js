@@ -18,7 +18,10 @@ exports.authenticate = async (req, res, next) => {
         next();
 
     } catch (err) {
-        res.status(403).json({ message: 'Token Expired || Forbidden' });
+        if (err.name === 'TokenExpiredError') {
+            return res.status(401).json({ message: 'Token expired, please login again' });
+        }
+        return res.status(401).json({ message: 'Invalid token or unauthorized' });
     }
 
 };

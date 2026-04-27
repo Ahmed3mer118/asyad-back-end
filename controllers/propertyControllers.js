@@ -64,7 +64,7 @@ exports.createProperty = async (req, res) => {
       description,
       price,
       statusSaleRent,
-      availability,
+      availability: availability || "available",
       propertyType,
       area,
       features,
@@ -137,10 +137,64 @@ exports.getProperties = async (req, res) => {
   }
 };
 
+exports.getPropertiesForAdmin = async (req, res) => {
+  try {
+    const {
+      city,
+      minPrice,
+      maxPrice,
+      bedrooms,
+      statusSaleRent,
+      availability,
+      category,
+      isActive,
+      page = 1,
+      limit = 10
+    } = req.query;
+
+    const query = {};
+
+    if (city) query["location.city"] = city;
+    if (statusSaleRent) query.statusSaleRent = statusSaleRent;
+    if (availability) query.availability = availability;
+    if (category) query.category = category;
+    if (typeof isActive !== "undefined") query.isActive = String(isActive) === "true";
+    if (bedrooms) query["details.bedrooms"] = Number(bedrooms);
+    if (minPrice || maxPrice) {
+      query.price = {};
+      if (minPrice) query.price.$gte = Number(minPrice);
+      if (maxPrice) query.price.$lte = Number(maxPrice);
+    }
+
+    const skip = (Number(page) - 1) * Number(limit);
+
+    const [properties, total] = await Promise.all([
+      Property.find(query).skip(skip).limit(Number(limit)),
+      Property.countDocuments(query)
+    ]);
+
+    res.status(200).json({
+      message: "Properties fetched successfully",
+      data: properties,
+      pagination: {
+        page: Number(page),
+        limit: Number(limit),
+        total,
+        totalPages: Math.ceil(total / Number(limit))
+      }
+    });
+  } catch (error) {
+    logger.error("Error fetching admin properties", { error: error.message, stack: error.stack });
+    res.status(500).json({ message: "Error fetching properties" });
+  }
+};
+
 exports.getPropertyById = async (req, res) => {
   try {
     const { id } = req.params;
-    const property = await Property.findById(id);
+    const isObjectId = /^[a-f\d]{24}$/i.test(String(id));
+    const query = isObjectId ? { _id: id } : { slug: id };
+    const property = await Property.findOne(query);
 
     if (!property || !property.isActive) {
       return res.status(404).json({ message: "Property not found" });
@@ -149,6 +203,22 @@ exports.getPropertyById = async (req, res) => {
     res.status(200).json({ message: "Property fetched successfully", data: property });
   } catch (error) {
     logger.error("Error fetching property by id", { error: error.message, stack: error.stack });
+    res.status(500).json({ message: "Error fetching property" });
+  }
+};
+
+exports.getPropertyBySlug = async (req, res) => {
+  try {
+    const { slug } = req.params;
+    const property = await Property.findOne({ slug });
+
+    if (!property || !property.isActive) {
+      return res.status(404).json({ message: "Property not found" });
+    }
+
+    res.status(200).json({ message: "Property fetched successfully", data: property });
+  } catch (error) {
+    logger.error("Error fetching property by slug", { error: error.message, stack: error.stack });
     res.status(500).json({ message: "Error fetching property" });
   }
 };
@@ -236,6 +306,29 @@ exports.deactivateProperty = async (req, res) => {
   } catch (error) {
     logger.error("Error deactivating property", { error: error.message, stack: error.stack });
     res.status(500).json({ message: "Error deactivating property" });
+  }
+};
+
+exports.activateProperty = async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    const property = await Property.findByIdAndUpdate(
+      id,
+      { isActive: true },
+      { new: true }
+    );
+
+    if (!property) {
+      return res.status(404).json({ message: "Property not found" });
+    }
+
+    logger.info("Property activated", { propertyId: property._id });
+
+    res.status(200).json({ message: "Property activated successfully", data: property });
+  } catch (error) {
+    logger.error("Error activating property", { error: error.message, stack: error.stack });
+    res.status(500).json({ message: "Error activating property" });
   }
 };
 
