@@ -1,15 +1,43 @@
 const Property = require("../models/Property.model");
 const logger = require("../utils/logger.util");
 
+const trimTrailingSlash = (value = "") => String(value).replace(/\/+$/, "");
+
+const resolvePublicBaseUrl = (req) => {
+  // Use configured public API domain first to avoid saving localhost URLs.
+  if (process.env.PUBLIC_BASE_URL) {
+    return trimTrailingSlash(process.env.PUBLIC_BASE_URL);
+  }
+
+  // Fallback to request host (works for same-domain deployments).
+  const protocol = req.headers["x-forwarded-proto"] || req.protocol || "http";
+  const host = req.headers["x-forwarded-host"] || req.get("host");
+  return trimTrailingSlash(`${protocol}://${host}`);
+};
+
+const toStoredImagePath = (rawUrl) => {
+  if (typeof rawUrl !== "string" || !rawUrl.trim()) return rawUrl;
+  const value = rawUrl.trim();
+
+  // Keep already-relative uploads path.
+  if (value.startsWith("/uploads/")) return value;
+
+  // Convert absolute URLs that include /uploads/... to stored relative path.
+  const uploadsMatch = value.match(/\/uploads\/[^?#]+/i);
+  if (uploadsMatch) return uploadsMatch[0];
+
+  return value;
+};
+
 const normalizeImages = (images) => {
   if (!Array.isArray(images)) return [];
   const normalized = images
     .map((img, idx) => {
       if (!img) return null;
       if (typeof img === "string") {
-        return { url: img, isMain: idx === 0, order: idx };
+        return { url: toStoredImagePath(img), isMain: idx === 0, order: idx };
       }
-      const url = img.url || img.path;
+      const url = toStoredImagePath(img.url || img.path);
       if (!url) return null;
       return {
         url,
@@ -260,9 +288,8 @@ exports.uploadPropertyImages = async (req, res) => {
       return res.status(400).json({ message: "No files uploaded" });
     }
 
-    const baseUrl = `${req.protocol}://${req.get("host")}`;
     const uploaded = files.map((file, idx) => ({
-      url: `${baseUrl}/uploads/${file.filename}`,
+      url: `/uploads/${file.filename}`,
       isMain: false,
       order: (property.images?.length || 0) + idx
     }));

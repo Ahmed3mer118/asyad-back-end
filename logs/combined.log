@@ -31,3 +31,8 @@ Timestamp: 2026/04/27 23:10:13; Level: INFO; Message: Request: GET /api/v1/prope
 Timestamp: 2026/04/27 23:10:13; Level: INFO; Message: Request: GET /api/v1/tasks-to-employees?page=1&limit=10 | Status: 304 | Duration: 1388ms; Meta: {"user":"69e697a54d4711a9c9d4215c"}; Stack:  
 Timestamp: 2026/04/27 23:10:14; Level: INFO; Message: Request: GET /api/v1/employees?limit=200 | Status: 304 | Duration: 2672ms; Meta: {"user":"69e697a54d4711a9c9d4215c"}; Stack:  
 Timestamp: 2026/04/27 23:10:15; Level: INFO; Message: Request: GET /api/v1/employees?limit=200 | Status: 304 | Duration: 994ms; Meta: {"user":"69e697a54d4711a9c9d4215c"}; Stack:  
+Timestamp: 2026/04/27 23:25:42; Level: INFO; Message: Request: GET /api/v1/properties/admin/all?page=1&limit=10 | Status: 304 | Duration: 1321ms; Meta: {"user":"69e697a54d4711a9c9d4215c"}; Stack:  
+Timestamp: 2026/04/27 23:32:25; Level: INFO; Message: Request: GET /api/v1/properties?limit=10&sort=-createdAt | Status: 304 | Duration: 316ms; Meta: {}; Stack:  
+Timestamp: 2026/04/27 23:50:04; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/04/28 00:00:38; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
+Timestamp: 2026/04/28 00:14:30; Level: INFO; Message: Roles ensured; Meta: {"roles":["Admin","User","Owner","Employee"]}; Stack:  
