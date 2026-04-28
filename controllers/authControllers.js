@@ -36,11 +36,19 @@ exports.register = (role) => {
     if (!roleDoc) {
       return next(new AppError("Role not configured in database", 500));
     }
-    await sendEmail({
-      to: email,
-      subject: "Your Verification Code",
-      message: `Your verification code is: ${verificationCode}`
-    });
+    try {
+      await sendEmail({
+        to: email,
+        subject: "Your Verification Code",
+        message: `Your verification code is: ${verificationCode}`
+      });
+    } catch (emailError) {
+      logger.error("Verification email sending failed", {
+        email,
+        error: emailError.message
+      });
+      return next(new AppError("Failed to send verification email. Check email service configuration.", 502));
+    }
 
     const user = await User.create({
       userName: username,
@@ -143,11 +151,19 @@ exports.forgetPassword = async (req, res, next) => {
   user.resetCode = resetCode;
   user.resetCodeExpires = Date.now() + 10 * 60 * 1000;
 
-  await sendEmail({
-    to: user.email,
-    subject: "Password Reset Code",
-    message: `Use this code to reset your password: ${resetCode}`
-  });
+  try {
+    await sendEmail({
+      to: user.email,
+      subject: "Password Reset Code",
+      message: `Use this code to reset your password: ${resetCode}`
+    });
+  } catch (emailError) {
+    logger.error("Password reset email sending failed", {
+      email: user.email,
+      error: emailError.message
+    });
+    return next(new AppError("Failed to send reset email. Check email service configuration.", 502));
+  }
 
   await user.save();
   logger.info("Password reset code generated and sent", { userId: user.id, email: user.email });
