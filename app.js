@@ -23,7 +23,6 @@ app.use(rateLimiter);
 app.use(morgan('combined', { stream: logger.stream }));
 
 // API routes
-app.use("/uploads", express.static("uploads"));
 app.use('/api/v1', routes);
 
 // 404 + error handlers

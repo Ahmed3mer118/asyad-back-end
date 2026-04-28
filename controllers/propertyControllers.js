@@ -1,19 +1,13 @@
 const Property = require("../models/Property.model");
 const logger = require("../utils/logger.util");
+const { put } = require("@vercel/blob");
 
-const trimTrailingSlash = (value = "") => String(value).replace(/\/+$/, "");
-
-const resolvePublicBaseUrl = (req) => {
-  // Use configured public API domain first to avoid saving localhost URLs.
-  if (process.env.PUBLIC_BASE_URL) {
-    return trimTrailingSlash(process.env.PUBLIC_BASE_URL);
-  }
-
-  // Fallback to request host (works for same-domain deployments).
-  const protocol = req.headers["x-forwarded-proto"] || req.protocol || "http";
-  const host = req.headers["x-forwarded-host"] || req.get("host");
-  return trimTrailingSlash(`${protocol}://${host}`);
-};
+const sanitizeFileName = (name = "") =>
+  String(name)
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9.\-_]/g, "-")
+    .replace(/-+/g, "-");
 
 const toStoredImagePath = (rawUrl) => {
   if (typeof rawUrl !== "string" || !rawUrl.trim()) return rawUrl;
@@ -288,8 +282,27 @@ exports.uploadPropertyImages = async (req, res) => {
       return res.status(400).json({ message: "No files uploaded" });
     }
 
-    const uploaded = files.map((file, idx) => ({
-      url: `/uploads/${file.filename}`,
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+      return res.status(500).json({
+        message: "BLOB_READ_WRITE_TOKEN is missing. Configure Vercel Blob first."
+      });
+    }
+
+    const now = Date.now();
+    const uploadedBlobs = await Promise.all(
+      files.map((file, idx) => {
+        const safeName = sanitizeFileName(file.originalname || `image-${idx + 1}.jpg`);
+        const pathname = `properties/${property._id}/${now}-${idx}-${safeName}`;
+        return put(pathname, file.buffer, {
+          access: "public",
+          token: process.env.BLOB_READ_WRITE_TOKEN,
+          contentType: file.mimetype
+        });
+      })
+    );
+
+    const uploaded = uploadedBlobs.map((blob, idx) => ({
+      url: blob.url,
       isMain: false,
       order: (property.images?.length || 0) + idx
     }));
