@@ -12,7 +12,15 @@ const parseBoolean = (value, fallback) => {
   return String(value).toLowerCase() === "true";
 };
 
+const normalizeEmailPassword = (value = "") =>
+  // Gmail app passwords are often copied with spaces.
+  String(value).replace(/\s+/g, "");
+
 const createTransporter = () => {
+  if (!process.env.EMAIL_SERVICE || !process.env.EMAIL_USER || !process.env.EMAIL_PASS) {
+    throw new Error("Email service env vars are missing (EMAIL_SERVICE, EMAIL_USER, EMAIL_PASS)");
+  }
+
   // In local/dev environments behind proxy/corporate certificates,
   // SMTP may fail unless certificate verification is relaxed.
   const rejectUnauthorized = parseBoolean(
@@ -24,7 +32,7 @@ const createTransporter = () => {
     service: process.env.EMAIL_SERVICE,
     auth: {
       user: process.env.EMAIL_USER,
-      pass: process.env.EMAIL_PASS
+      pass: normalizeEmailPassword(process.env.EMAIL_PASS)
     },
     tls: {
       rejectUnauthorized

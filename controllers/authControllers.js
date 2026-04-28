@@ -9,7 +9,9 @@ const logger = require("../utils/logger.util");
 
 exports.register = (role) => {
   return catchAsync(async (req, res, next) => {
-    const { username, email, password, phoneNumber } = req.body;
+    const { email, password } = req.body;
+    const username = req.body.username || req.body.userName || req.body.fullName;
+    const phoneNumber = req.body.phoneNumber || req.body.phone_number;
     const rawRole = (req.body.role || "user").toString();
     const roleMap = {
       admin: "Admin",
@@ -22,6 +24,9 @@ exports.register = (role) => {
     const allowedRoles = ["Admin", "User", "Owner", "Employee"];
     if (!allowedRoles.includes(requestedRole)) {
       return next(new AppError(`Invalid role. Allowed: ${allowedRoles.join(", ")}`, 400));
+    }
+    if (!username || !email || !password) {
+      return next(new AppError("username (or userName/fullName), email and password are required", 400));
     }
     const existing = await User.findOne({ email })
     if (existing) {
