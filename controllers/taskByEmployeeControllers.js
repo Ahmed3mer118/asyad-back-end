@@ -3,7 +3,7 @@ const catchAsync = require("../utils/catch-async.util");
 const AppError = require("../utils/app-error.util");
 
 exports.createTask = catchAsync(async (req, res, next) => {
-    const { employeeId, taskNo, data, notes } = req.body;
+    const { employeeId, taskNo, data, dateTask , notes } = req.body;
     if (!employeeId || taskNo == null || !data) {
         return next(new AppError("employeeId, taskNo, and data are required", 400));
     }

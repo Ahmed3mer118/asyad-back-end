@@ -1,7 +1,7 @@
 # Mobile API Handover (User + Employee)
 
 Base URL:
-- `http://localhost:5000/api/v1`
+- `http://localhost:<PORT>/api/v1` — الـ API مربوطة في `expressApp.js`؛ الـ `<PORT>` من `process.env.PORT` وفي `server.js` الافتراضي **`3000`** (مش 5000 إلا لو ضبطته في البيئة).
 
 Auth:
 - استخدم `Authorization: Bearer <TOKEN>` في أي endpoint مكتوب عليه Protected.
@@ -14,7 +14,8 @@ Auth:
 
 ### `POST /auth/register`
 - **Access:** Public
-- **Body (required):**
+- **Body (required):** `email`, `password`, واسم المستخدم عبر أحد الحقول: `username` **أو** `userName` **أو** `fullName`
+- **Body (optional):** `phoneNumber` **أو** `phone_number`، و`role` (الافتراضي من الباك اند: مستخدم عادي)
 ```json
 {
   "username": "string",
@@ -36,7 +37,7 @@ Auth:
   "code": "6-digit string"
 }
 ```
-- **Success:** `200`
+- **Success:** `200` + `message` (مثلاً: تم التحقق من البريد)
 
 ### `POST /auth/login`
 - **Access:** Public
@@ -47,7 +48,7 @@ Auth:
   "password": "string"
 }
 ```
-- **Success:** `200` + `token`
+- **Success:** `200` + `message` + `token`
 
 ### `POST /auth/forget-password`
 - **Access:** Public
@@ -77,7 +78,7 @@ Auth:
 
 ### `GET /users/me`
 - **Access:** Protected (`user`, `admin`, `owner`, `employee`)
-- **Success:** `200` + user profile
+- **Success:** `200` + `{ message, data }` (بروفايل المستخدم مع `roleId` مملوء)
 
 ### `GET /users/`
 - **Access:** Protected (`user`, `admin`, `owner`, `employee`)
@@ -93,7 +94,7 @@ Auth:
   "address": "string"
 }
 ```
-- **Success:** `200` + updated user
+- **Success:** `200` + `{ message, data }` (المستخدم بعد التحديث)
 
 ---
 
@@ -115,6 +116,7 @@ Auth:
 
 ### `GET /properties/:id`
 - **Access:** Public
+- **Notes:** في الباك اند نفس الـ handler يقبل في `:id` إما **ObjectId** أو **slug** (بديل لمسار الـ slug أدناه).
 - **Success:** `200` + property data
 
 ### `GET /properties/slug/:slug`
@@ -147,6 +149,10 @@ Auth:
 - **Access:** Public
 - **Query (optional):** `city`, `limit`
 - **Success:** `200` + popular properties by favorites
+
+### `GET /favorites/stats/:propertyId`
+- **Access:** Public (مفيش توكن)
+- **Success:** `200` + إحصائيات المفضلة للعقار (`currentFavoriteCount`, `totalAdded`, `totalRemoved`)
 
 ---
 
@@ -187,7 +193,7 @@ Auth:
 ## Payments
 
 ### `POST /payments`
-- **Access:** Protected (أي مستخدم مسجل)
+- **Access:** Protected (أي دور مسجّل دخوله؛ الـ route مفيش `authorize` إضافي، لكن المنطق في الكنترولر يحدّ من غير الأدمن/الموظف لمعاملات العميل نفسه)
 - **User rule:** يقدر يدفع فقط على transaction تخصه.
 - **Body (required):**
 ```json
@@ -212,19 +218,19 @@ Auth:
 - **Success:** `200` + user payments
 
 ### `GET /payments`
-- **Access:** Protected
+- **Access:** Protected (نفس ملاحظة الصلاحيات أعلاه)
 - **Query (optional):** `transactionId`
 - **User rule:** يقدر يشوف payments الخاصة بمعاملاته فقط.
 
 ## Installments
 
 ### `GET /installments/me`
-- **Access:** Protected
+- **Access:** Protected (مفيش تقييد أدوار على مستوى الـ router؛ البيانات بتتفلتر لمعاملات المستخدم)
 - **Query (optional):** `page`, `limit`
 - **Success:** `200` + user installments
 
 ### `GET /installments`
-- **Access:** Protected
+- **Access:** Protected (لو مرّرت `transactionId` كعميل: لازم تكون المعاملة بتاعتك)
 - **Query (optional):** `transactionId`, `page`, `limit`
 - **User rule:** لو transactionId موجود، لازم يكون transaction تبع نفس المستخدم.
 
@@ -234,7 +240,13 @@ Auth:
 
 ### `GET /evaluations?employeeId=<id>`
 - **Access:** Protected (`admin`, `employee`)
-- **Use case:** الموظف يعرض التقييمات الخاصة به.
+- **Use case:** الموظف يعرض التقييمات الخاصة به (يُفضّل دائماً تمرير `employeeId` الخاص به).
+
+### `POST /tasks-to-employees`
+- **Access:** Protected (`admin` فقط)
+- **Body (required):** `employeeId`, `title`, `propertyId`
+- **Body (optional):** `description`, `appointmentId`, `dueDate`
+- **Use case:** إنشاء مهمة وإسنادها لموظف — **ليس** جزءاً من تطبيق الموظف؛ للأدمن/لوحة التحكم.
 
 ### `GET /tasks-to-employees?employeeId=<id>&status=<status>`
 - **Access:** Protected (`admin`, `employee`)
@@ -281,9 +293,10 @@ Auth:
 ```json
 {
   "employeeId": "ObjectId",
-  "rating": 1
+  "rating": 3
 }
 ```
+- **Notes:** `rating` رقم من **1** لـ **5** (حسب الموديل في الباك اند).
 - **Body (optional):**
 ```json
 {
@@ -318,9 +331,11 @@ Auth:
 - `POST /installments`
 - `POST /installments/generate`
 - `PATCH /installments/:id`
+- `GET /properties/admin/all` (لوحة أدمن/مالك)
+- `POST /properties`, `PATCH /properties/:id`, رفع صور، تفعيل/تعطيل عقار…
 - `GET /favorites/long-standing`
 - `GET /favorites/favorited-by/:propertyId`
-- `GET /favorites/stats/:propertyId`
+- `GET /email-logs` و `POST /email-logs`
 
 ---
 
@@ -329,7 +344,7 @@ Auth:
 - خلص Auth flow: register -> verify-code -> login -> store token.
 - اعتمد على `/users/me` لبيانات البروفايل الأساسية.
 - لواجهة العقارات استخدم `/properties` مع pagination + filters.
-- نفّذ Favorites (add/list/remove) على نفس property card.
+- نفّذ Favorites (add/list/remove) على نفس property card؛ لو محتاج عدّاد مفضلة على بطاقة العقار استخدم `GET /favorites/stats/:propertyId` (عام، بدون توكن).
 - احجز معاينة من `/appointments/book` واعرضها من `/appointments/me`.
 - لصفحة المدفوعات والأقساط استخدم:
   - `/transactions/me`
