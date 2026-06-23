@@ -14,8 +14,13 @@ exports.createTask = catchAsync(async (req, res, next) => {
         return next(new AppError("Task number already exists for this employee", 400));
     }
 
-    const task = await TaskByEmployee.create({ employeeId, taskNo, data, notes });
-    res.status(201).json({ message: "Task submitted by employee successfully", data: task });
+    const task = await TaskByEmployee.create({
+        employeeId,
+        taskNo,
+        data,
+        notes,
+        ...(dateTask ? { dateTask: new Date(dateTask) } : {}),
+    });    res.status(201).json({ message: "Task submitted by employee successfully", data: task });
 });
 
 exports.getTasks = catchAsync(async (req, res) => {

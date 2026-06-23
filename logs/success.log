@@ -58,3 +58,7 @@ Timestamp: 2026/05/19 16:20:52; Level: ERROR; Message: Failed to ensure roles; M
     at Timeout.<anonymous> (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
     at listOnTimeout (node:internal/timers:588:17)
     at process.processTimers (node:internal/timers:523:7)
+Timestamp: 2026/06/23 10:02:30; Level: ERROR; Message: Failed to ensure roles; Meta: {"error":"Operation `roles.updateOne()` buffering timed out after 10000ms"}; Stack: MongooseError: Operation `roles.updateOne()` buffering timed out after 10000ms
+    at Timeout.<anonymous> (H:\Graduation-project\Graduation-Project-backend\node_modules\mongoose\lib\drivers\node-mongodb-native\collection.js:187:23)
+    at listOnTimeout (node:internal/timers:573:17)
+    at process.processTimers (node:internal/timers:514:7)

@@ -5,7 +5,7 @@ const taskByEmployeeSchema = new mongoose.Schema(
         employeeId: { type: mongoose.Schema.Types.ObjectId, ref: "Employee", required: true },
         taskNo: { type: Number, required: true },
         data: { type: String, required: true },
-        dateTask: { type : Date , default: new Date()},
+        dateTask: { type : Date ,default: Date.now},
         notes: { type: String },
         status: {
             type: String,
